@@ -1,0 +1,8 @@
+interface:
+  display_name: "R Core"
+  short_description: "R vectors, tibbles, types, and tidy evaluation"
+  default_prompt: "Use $r-core to review this R code for type, size, missingness, and evaluation hazards."
+
+policy:
+  allow_implicit_invocation: true
+

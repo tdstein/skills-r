@@ -1,0 +1,45 @@
+{
+  "skill": "r-dplyr",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "duplicate-key-join",
+      "name": "Validate duplicate-key joins",
+      "prompt": "Join orders to customer_status by customer_id. Some customer_status rows are duplicated. The output has more rows than orders. Review the code and propose a safe fix.",
+      "description": "Diagnose row multiplication caused by duplicate join keys and make the data-quality decision explicit.",
+      "traps": ["Recommend distinct() without investigating", "Assume left_join always preserves row count", "Ignore relationship validation"],
+      "assertions": [
+        {"id": "explain-row-multiplication", "text": "Explains many-to-one or many-to-many row multiplication"},
+        {"id": "check-right-keys", "text": "Checks duplicate keys on the right table"},
+        {"id": "validate-relationship", "text": "Uses relationship validation or an explicit data-quality decision"},
+        {"id": "preserve-records", "text": "Does not silently discard records"}
+      ]
+    },
+    {
+      "id": "grouped-summary",
+      "name": "Control grouped summaries",
+      "prompt": "Write a grouped summary of mean revenue by region and channel, excluding missing revenue, then ensure a later ungrouped mutate is not affected by retained groups.",
+      "description": "Build a grouped summary with an explicit missing-value policy and predictable grouping lifecycle.",
+      "traps": ["Use deprecated summarise_at", "Omit na.rm policy", "Assume grouping always disappears"],
+      "assertions": [
+        {"id": "use-grouping-api", "text": "Uses group_by or .by correctly"},
+        {"id": "define-missing-policy", "text": "Defines missing-value handling"},
+        {"id": "control-summary-groups", "text": "Controls grouping with .groups or explicit ungroup"},
+        {"id": "produce-one-row-per-group", "text": "Produces one summary row per intended group"}
+      ]
+    },
+    {
+      "id": "across-programming",
+      "name": "Program column-wise transformations",
+      "prompt": "A function receives a character vector of numeric column names and should standardize only those columns. Make the interface robust when one requested name is absent.",
+      "description": "Use tidy evaluation and column-wise operations safely when column names arrive as strings.",
+      "traps": ["Use parse/eval string concatenation", "Use all_of when absence should be tolerated", "Apply scale() to nonnumeric columns"],
+      "assertions": [
+        {"id": "tolerate-optional-columns", "text": "Uses any_of for intentionally optional names"},
+        {"id": "use-column-wise-operation", "text": "Uses across or an equivalent column-wise operation"},
+        {"id": "validate-numeric-columns", "text": "Restricts the transformation to numeric columns or validates types"},
+        {"id": "separate-string-and-masked-input", "text": "Keeps the string-driven interface distinct from data-masked input"}
+      ]
+    }
+  ]
+}

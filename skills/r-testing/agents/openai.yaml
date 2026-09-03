@@ -1,0 +1,8 @@
+interface:
+  display_name: "R Testing"
+  short_description: "Reliable testthat tests for R code and packages"
+  default_prompt: "Use $r-testing to design tests for this R change, including edge cases and isolated fixtures."
+
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,42 @@
+{
+  "skill": "r-style",
+  "version": "0.1.0",
+  "cases": [
+    {
+    "id": "style-review-finds-behavioral-smells",
+    "name": "style-review-finds-behavioral-smells",
+    "description": "The review addresses clarity and side effects, not only whitespace.",
+    "prompt": "Review this R helper: it calls setwd(), library(dplyr), creates `tmp`, suppresses all warnings, writes a CSV, and returns NULL. Give concrete improvements.",
+    "traps": ["The model limits feedback to indentation and line length."],
+    "assertions": [
+      {"id": "1.1", "text": "Flags setwd() and package attachment inside reusable code."},
+      {"id": "1.2", "text": "Flags broad warning suppression and the hidden file-writing side effect."},
+      {"id": "1.3", "text": "Recommends explicit names and a return value or explicit side-effect boundary."}
+    ]
+    },
+    {
+    "id": "pipe-choice-is-contextual",
+    "name": "pipe-choice-is-contextual",
+    "description": "The answer treats pipe choice as a project/context decision rather than a universal rule.",
+    "prompt": "A package mixes base `|>` and magrittr `%>%`. Decide whether to rewrite all code to one pipe and explain when either choice is justified.",
+    "traps": ["The model declares one pipe universally correct without considering placeholders or project convention."],
+    "assertions": [
+      {"id": "2.1", "text": "Recommends consistency within a file/project."},
+      {"id": "2.2", "text": "Recognizes that `%>%` can provide magrittr-specific features while `|>` is base R."},
+      {"id": "2.3", "text": "Does not treat either pipe as universally mandatory."}
+    ]
+    },
+    {
+    "id": "package-namespace-boundary",
+    "name": "package-namespace-boundary",
+    "description": "Package code declares and references dependencies at the package boundary.",
+    "prompt": "Review a package function that calls `filter()` and `str_detect()` without namespace qualification, while the packages are listed in Suggests. Explain the risks and the correct fix.",
+    "traps": ["The model says the code is fine because the developer's session has those packages attached."],
+    "assertions": [
+      {"id": "3.1", "text": "Rejects reliance on packages attached in an interactive session."},
+      {"id": "3.2", "text": "Recommends moving runtime dependencies to Imports when required by the package API."},
+      {"id": "3.3", "text": "Recommends explicit `pkg::fun()` or deliberate NAMESPACE imports."}
+    ]
+    }
+  ]
+}

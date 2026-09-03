@@ -1,0 +1,6 @@
+interface:
+  display_name: "R tidyr"
+  short_description: "Pivoting, nesting, and tidy data shape"
+  default_prompt: "Use $r-tidyr to reshape this data while preserving identifiers, types, and intended row grain."
+policy:
+  allow_implicit_invocation: true

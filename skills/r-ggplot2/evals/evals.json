@@ -1,0 +1,45 @@
+{
+  "skill": "r-ggplot2",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "mapping-vs-setting",
+      "name": "Distinguish aesthetic mapping and setting",
+      "prompt": "This plot should show all points in blue, but the legend contains a category called blue. Diagnose the code and correct it.",
+      "description": "Correct a constant aesthetic that was mistakenly supplied as a mapped variable.",
+      "traps": ["Keep colour inside aes", "Remove the legend without explaining the cause", "Map a fabricated blue column"],
+      "assertions": [
+        {"id": "identify-mapping-setting", "text": "Identifies mapping versus setting"},
+        {"id": "set-constant-colour", "text": "Moves the constant colour outside aes"},
+        {"id": "explain-legend", "text": "Explains why the legend appeared"},
+        {"id": "preserve-data", "text": "Does not change the data to solve a plotting issue"}
+      ]
+    },
+    {
+      "id": "stat-after-stat",
+      "name": "Label computed histogram proportions",
+      "prompt": "Add labels showing each histogram bin's proportion of observations. The input has only a numeric value column. Explain how the computed variable is accessed and what denominator is used.",
+      "description": "Use stat-computed histogram values to label normalized bins with an explicit denominator.",
+      "traps": ["Refer to a nonexistent input proportion column", "Use y = proportion without after_stat", "Ignore binning assumptions"],
+      "assertions": [
+        {"id": "use-histogram-stat", "text": "Uses a histogram stat or an equivalent computed variable"},
+        {"id": "access-computed-values", "text": "Uses after_stat for stat-created values"},
+        {"id": "state-normalization", "text": "States the denominator or normalization"},
+        {"id": "make-binning-reproducible", "text": "Makes binning explicit enough to reproduce"}
+      ]
+    },
+    {
+      "id": "zoom-without-dropping",
+      "name": "Zoom without dropping outliers",
+      "prompt": "A boxplot should focus visually on y values between 0 and 100 while retaining outliers in the quartile calculation. Which coordinate or scale choice is correct and why?",
+      "description": "Choose a visual zoom that preserves all observations for statistical computation.",
+      "traps": ["Use scale_y_continuous(limits = c(0, 100)) without caveat", "Filter the data silently", "Claim the two approaches are identical"],
+      "assertions": [
+        {"id": "choose-coordinate-zoom", "text": "Chooses coord_cartesian for visual zooming"},
+        {"id": "explain-scale-limit-effects", "text": "Explains that scale limits can remove data before stats"},
+        {"id": "retain-outliers", "text": "Keeps the outliers in the computation"},
+        {"id": "distinguish-zoom-and-exclusion", "text": "Distinguishes display limits from data exclusion"}
+      ]
+    }
+  ]
+}

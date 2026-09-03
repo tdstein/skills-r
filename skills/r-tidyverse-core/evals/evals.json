@@ -1,0 +1,45 @@
+{
+  "skill": "r-tidyverse-core",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "routing-shape-vs-values",
+      "name": "Route table shape changes",
+      "prompt": "I have one row per customer and columns sales_2024 and sales_2025. I need a row per customer-year for a downstream grouped summary. Which tidyverse skill should own the change and what invariant should I check?",
+      "description": "Choose the owning tidyverse skill and verify the table grain before reshaping.",
+      "traps": ["Suggest mutate() alone", "Treat a wide table as always invalid", "Ignore the observational unit"],
+      "assertions": [
+        {"id": "route-to-tidyr", "text": "Routes the shape change to tidyr"},
+        {"id": "explain-pivot-shape", "text": "Explains that pivoting changes rows and columns"},
+        {"id": "state-observational-unit", "text": "States the intended observational unit"},
+        {"id": "check-reshape-invariant", "text": "Mentions checking identifier uniqueness or row counts"}
+      ]
+    },
+    {
+      "id": "grouping-leak",
+      "name": "Diagnose retained grouping",
+      "prompt": "A grouped tibble feeds three later operations and one unexpectedly summarizes by the old groups. Diagnose the likely cause and give a safe review strategy.",
+      "description": "Inspect grouping metadata and control whether later operations retain or remove groups.",
+      "traps": ["Claim tibbles cannot retain grouping", "Recommend converting to matrix", "Assume ungroup() is always required immediately"],
+      "assertions": [
+        {"id": "identify-grouping-metadata", "text": "Identifies grouping metadata as a possible cause"},
+        {"id": "inspect-group-vars", "text": "Recommends inspecting group_vars()"},
+        {"id": "control-group-lifecycle", "text": "Explains intentional use of .groups or ungroup()"},
+        {"id": "preserve-tibble", "text": "Preserves the data-frame representation"}
+      ]
+    },
+    {
+      "id": "type-coercion",
+      "name": "Investigate common-type coercion",
+      "prompt": "A join or bind_rows result turns Date and numeric columns into character. Explain how to investigate without blindly applying as.character() everywhere.",
+      "description": "Trace unexpected coercion through input prototypes and preserve meaningful column types.",
+      "traps": ["Recommend global character coercion", "Treat NA and NULL as interchangeable", "Ignore common-type rules"],
+      "assertions": [
+        {"id": "inspect-input-prototypes", "text": "Inspects input classes and prototypes"},
+        {"id": "use-vctrs-common-type", "text": "Mentions vctrs common-type reasoning"},
+        {"id": "distinguish-missing-and-null", "text": "Distinguishes typed missing values from NULL"},
+        {"id": "preserve-semantic-types", "text": "Preserves semantic types with explicit conversion"}
+      ]
+    }
+  ]
+}

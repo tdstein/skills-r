@@ -1,0 +1,6 @@
+interface:
+  display_name: "R readr"
+  short_description: "Reproducible import, parsing, and diagnostics"
+  default_prompt: "Use $r-readr to define and validate a reproducible readr import contract for this file."
+policy:
+  allow_implicit_invocation: true

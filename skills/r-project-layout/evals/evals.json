@@ -1,0 +1,43 @@
+{
+  "skill": "r-project-layout",
+  "version": "0.1.0",
+  "cases": [
+    {
+    "id": "package-versus-analysis-choice",
+    "name": "package-versus-analysis-choice",
+    "description": "The layout follows the artifact's contract instead of applying package scaffolding everywhere.",
+    "prompt": "A team has reusable data-cleaning functions, tests, two reports, and a scheduled analysis. Recommend a project layout and explain which code belongs in a package versus report scripts.",
+    "traps": ["The model puts all logic in report chunks or creates a package with no separation for report-specific execution."],
+    "assertions": [
+      {"id": "1.1", "text": "Recommends placing reusable functions in R/ or a package source boundary."},
+      {"id": "1.2", "text": "Keeps reports separate from reusable logic."},
+      {"id": "1.3", "text": "Includes a tests/testthat/ boundary for reusable code."},
+      {"id": "1.4", "text": "Explains why the mixed project is appropriate."}
+    ]
+    },
+    {
+    "id": "generated-package-files",
+    "name": "generated-package-files",
+    "description": "The answer respects roxygen2-generated package artifacts.",
+    "prompt": "A contributor manually edited NAMESPACE and a .Rd file to fix a package check. What should the project workflow do instead?",
+    "traps": ["The model recommends continuing to hand-edit generated files."],
+    "assertions": [
+      {"id": "2.1", "text": "Recommends changing roxygen2 source comments or DESCRIPTION instead of hand-editing generated files."},
+      {"id": "2.2", "text": "Mentions running documentation generation and checking the resulting diff."},
+      {"id": "2.3", "text": "Identifies NAMESPACE and .Rd files as generated artifacts in the usual roxygen2 workflow."}
+    ]
+    },
+    {
+    "id": "reproducible-analysis-paths",
+    "name": "reproducible-analysis-paths",
+    "description": "The solution avoids machine-specific working-directory assumptions.",
+    "prompt": "Review an R Markdown report that begins with `setwd('/Users/alice/project')` and reads `../data/final.csv`. Make it runnable for CI and another analyst.",
+    "traps": ["The model only changes the absolute path to another hard-coded path."],
+    "assertions": [
+      {"id": "3.1", "text": "Removes the machine-specific setwd() assumption."},
+      {"id": "3.2", "text": "Uses project-root-relative path resolution such as here::here() or an explicit root parameter."},
+      {"id": "3.3", "text": "Makes inputs and output destinations visible and reproducible."}
+    ]
+    }
+  ]
+}

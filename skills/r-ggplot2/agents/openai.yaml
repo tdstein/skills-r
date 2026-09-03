@@ -1,0 +1,6 @@
+interface:
+  display_name: "R ggplot2"
+  short_description: "ggplot2 layers, mappings, scales, and facets"
+  default_prompt: "Use $r-ggplot2 to review or build this plot with correct aesthetic mappings, stats, and scales."
+policy:
+  allow_implicit_invocation: true

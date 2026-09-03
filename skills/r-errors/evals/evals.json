@@ -1,0 +1,45 @@
+{
+  "skill": "r-errors",
+  "version": "0.1.0",
+  "cases": [
+    {
+    "id": "custom-error-class",
+    "name": "custom-error-class",
+    "description": "The implementation raises a stable machine-readable condition with safe context.",
+    "prompt": "Implement `validate_email(x)` in an R package. Invalid input should fail with a condition callers can distinguish from a missing dependency, and the message should help a user fix the input without exposing sensitive data.",
+    "traps": ["The model calls stop() with an unstable free-form message or includes the full invalid input."],
+    "assertions": [
+      {"id": "1.1", "text": "Uses rlang::abort() or an equivalent structured condition mechanism."},
+      {"id": "1.2", "text": "Defines a stable domain-specific condition class."},
+      {"id": "1.3", "text": "Provides actionable safe context without exposing the full input or secrets."},
+      {"id": "1.4", "text": "Makes the condition distinguishable from unrelated errors."}
+    ]
+    },
+    {
+    "id": "trycatch-versus-calling-handlers",
+    "name": "trycatch-versus-calling-handlers",
+    "description": "The answer chooses handlers based on whether it recovers or observes a condition.",
+    "prompt": "A report should log a warning from a parser and continue, but a configuration error should be wrapped with additional context and rethrown. Which R condition tools should each path use and why?",
+    "traps": ["The model uses tryCatch() for both paths or suppresses every warning globally."],
+    "assertions": [
+      {"id": "2.1", "text": "Uses withCallingHandlers() for observing/logging and optionally muffling the warning."},
+      {"id": "2.2", "text": "Uses tryCatch() for transforming or rethrowing the configuration error."},
+      {"id": "2.3", "text": "Rejects broad global suppression of warnings."},
+      {"id": "2.4", "text": "Preserves useful parent context when rethrowing."}
+    ]
+    },
+    {
+    "id": "tidyverse-error-context",
+    "name": "tidyverse-error-context",
+    "description": "The solution adds operation-level context without erasing the original condition or leaking data.",
+    "prompt": "A purrr mapping pipeline fails while parsing one source file. Design the error handling so the caller knows which safe file identifier and operation failed, while retaining the original cause.",
+    "traps": ["The model returns NULL for the failed element or wraps everything in a generic error that loses the backtrace."],
+    "assertions": [
+      {"id": "3.1", "text": "Identifies the operation and a safe source identifier in the new context."},
+      {"id": "3.2", "text": "Preserves or chains the original condition."},
+      {"id": "3.3", "text": "Does not silently replace the failure with NULL unless explicitly requested by the API."},
+      {"id": "3.4", "text": "Avoids dumping full sensitive input into the error."}
+    ]
+    }
+  ]
+}

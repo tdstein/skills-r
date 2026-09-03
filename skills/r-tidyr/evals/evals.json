@@ -1,0 +1,45 @@
+{
+  "skill": "r-tidyr",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "pivot-longer-identifiers",
+      "name": "Pivot while preserving identifiers",
+      "prompt": "A table has patient_id, visit_date, bp_systolic_visit1, bp_systolic_visit2, and weight_visit1. Reshape it to one patient-visit row without accidentally pivoting patient_id or visit_date.",
+      "description": "Reshape encoded measurement columns while preserving identifier columns and the intended row grain.",
+      "traps": ["Select every column", "Lose the visit metadata", "Treat missing values as automatically discardable"],
+      "assertions": [
+        {"id": "select-measured-columns", "text": "Uses pivot_longer with explicit measured columns"},
+        {"id": "parse-encoded-names", "text": "Parses the encoded names into visit and measure"},
+        {"id": "preserve-identifiers", "text": "Preserves patient_id and visit_date as identifiers"},
+        {"id": "address-measure-shape", "text": "Discusses incompatible measures or a .value strategy"}
+      ]
+    },
+    {
+      "id": "pivot-wider-duplicates",
+      "name": "Resolve duplicate widening keys",
+      "prompt": "Pivot event data wider by person_id and event_type, but some person/type combinations have multiple timestamps. Explain the correct decision before writing code.",
+      "description": "Determine whether repeated widening keys represent data quality issues or meaningful repeated events.",
+      "traps": ["Let pivot_wider silently create list-columns", "Use distinct to hide duplicates", "Choose mean timestamp without domain justification"],
+      "assertions": [
+        {"id": "check-widening-keys", "text": "Checks duplicate identifier/name combinations"},
+        {"id": "use-values-function", "text": "Explains that values_fn is needed if aggregation is intended"},
+        {"id": "interpret-repeated-events", "text": "Distinguishes duplicate data from meaningful repeated events"},
+        {"id": "preserve-observations", "text": "Does not silently discard observations"}
+      ]
+    },
+    {
+      "id": "nested-json",
+      "name": "Extract from nested records",
+      "prompt": "A tibble has a list-column of named API records. Extract status and nested error$message while preserving one row per request, including missing and empty records.",
+      "description": "Extract selected fields from nested list-columns without changing the request-level row grain.",
+      "traps": ["Fully unnest without considering row grain", "Treat NULL as the string 'NULL'", "Drop empty records without policy"],
+      "assertions": [
+        {"id": "choose-targeted-extraction", "text": "Chooses hoist or targeted unnesting"},
+        {"id": "preserve-request-identifiers", "text": "Preserves request identifiers"},
+        {"id": "handle-empty-elements", "text": "Handles missing or empty list elements explicitly"},
+        {"id": "check-expansion-grain", "text": "Checks whether expansion is one-to-one"}
+      ]
+    }
+  ]
+}

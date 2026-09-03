@@ -1,0 +1,43 @@
+{
+  "skill": "r-core",
+  "version": "0.1.0",
+  "cases": [
+    {
+    "id": "missing-value-and-size-contract",
+    "name": "missing-value-and-size-contract",
+    "description": "The solution makes missingness and output size explicit instead of relying on accidental recycling.",
+    "prompt": "Write an R helper that adds two numeric columns and returns a tibble with the result. Explain how it behaves for NA values, zero rows, and columns of different lengths.",
+    "traps": ["The model uses `x + y` without checking size compatibility and describes NA as zero."],
+    "assertions": [
+      {"id": "1.1", "text": "States or enforces the required size relationship between the two input columns."},
+      {"id": "1.2", "text": "Treats NA as missing rather than silently converting it to zero."},
+      {"id": "1.3", "text": "Defines behavior for zero-row input and preserves a stable output schema."},
+      {"id": "1.4", "text": "Does not rely on accidental recycling for incompatible lengths."}
+    ]
+    },
+    {
+    "id": "subsetting-preserves-intent",
+    "name": "subsetting-preserves-intent",
+    "description": "The solution chooses `[[` or `[` according to whether one element or a collection is required.",
+    "prompt": "Review an R function that extracts a selected column from a data frame and then extracts one named value from a list. Recommend the correct subsetting operators and explain why.",
+    "traps": ["The model recommends `$` or `[1]` indiscriminately and ignores dimensionality changes."],
+    "assertions": [
+      {"id": "2.1", "text": "Uses `[[` for extracting one list/data-frame element when a single object is required."},
+      {"id": "2.2", "text": "Uses `[` when preserving a collection or data-frame container is required."},
+      {"id": "2.3", "text": "Mentions dimensionality or container-preservation consequences."}
+    ]
+    },
+    {
+    "id": "data-mask-boundary",
+    "name": "data-mask-boundary",
+    "description": "Programmatic column selection distinguishes data-mask lookup from environment lookup.",
+    "prompt": "Write a function `mean_column(data, column_name)` that accepts a character column name and computes its mean. The caller's environment also contains an object named `value`; explain how the function avoids using that object by mistake.",
+    "traps": ["The model writes `mean(column_name)` or evaluates a constructed string with `eval(parse())`."],
+    "assertions": [
+      {"id": "3.1", "text": "Uses `.data[[column_name]]` or an equivalent safe programmatic selection."},
+      {"id": "3.2", "text": "Does not use `eval(parse())` for ordinary column selection."},
+      {"id": "3.3", "text": "Explains the distinction between data columns and environment variables."}
+    ]
+    }
+  ]
+}

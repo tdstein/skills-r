@@ -1,0 +1,8 @@
+interface:
+  display_name: "R Dependencies"
+  short_description: "Declare, lock, and audit R package dependencies"
+  default_prompt: "Use $r-dependencies to review this R dependency change for declarations and reproducibility."
+
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,45 @@
+{
+  "skill": "r-testing",
+  "version": "0.1.0",
+  "cases": [
+    {
+    "id": "data-contract-test",
+    "name": "data-contract-test",
+    "description": "The tests assert values and structural invariants for a grouped data transformation.",
+    "prompt": "Write testthat tests for a function that groups a tibble by team and returns one row per team with an average score. Include duplicate rows, an all-NA team, and zero-row input.",
+    "traps": ["The model checks only the first numeric result and misses grouping, row count, and NA behavior."],
+    "assertions": [
+      {"id": "1.1", "text": "Uses descriptive testthat tests and expectations."},
+      {"id": "1.2", "text": "Checks one output row per expected group."},
+      {"id": "1.3", "text": "Covers all-NA behavior explicitly rather than assuming it."},
+      {"id": "1.4", "text": "Covers zero-row input and expected output schema."},
+      {"id": "1.5", "text": "Checks relevant column names/types or tibble structure."}
+    ]
+    },
+    {
+    "id": "condition-class-assertion",
+    "name": "condition-class-assertion",
+    "description": "The tests assert stable condition classes instead of brittle incidental text.",
+    "prompt": "A parser throws an `my_pkg_invalid_id` error with a changing explanatory message. Write the test for an empty ID and explain what should be asserted.",
+    "traps": ["The model matches the entire current error message or only uses expect_error() with no class."],
+    "assertions": [
+      {"id": "2.1", "text": "Uses expect_error() with the custom condition class."},
+      {"id": "2.2", "text": "Avoids asserting the entire volatile message unless it is an explicit contract."},
+      {"id": "2.3", "text": "Explains why class-based assertions are more stable."}
+    ]
+    },
+    {
+    "id": "isolated-integration-test",
+    "name": "isolated-integration-test",
+    "description": "The integration test is explicit, isolated, and does not run against production by default.",
+    "prompt": "Write a testthat integration test for importing from a database. It should run only when RUN_DB_TESTS=true, skip if DBI is missing, use test credentials, and clean up resources.",
+    "traps": ["The model connects to a hard-coded production database during every test run."],
+    "assertions": [
+      {"id": "3.1", "text": "Uses an explicit opt-in condition such as RUN_DB_TESTS=true."},
+      {"id": "3.2", "text": "Skips clearly when the required package or service is unavailable."},
+      {"id": "3.3", "text": "Does not hard-code production credentials or a production endpoint."},
+      {"id": "3.4", "text": "Cleans up database connections and temporary resources."}
+    ]
+    }
+  ]
+}

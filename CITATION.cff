@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use cc-skills-r, please cite it as below."
+title: "cc-skills-r"
+type: software
+version: "0.1.0"
+date-released: 2026-09-03
+authors:
+  - family-names: Berthe
+    given-names: Samuel
+repository-code: "https://github.com/samber/cc-skills-r"
+license: MIT

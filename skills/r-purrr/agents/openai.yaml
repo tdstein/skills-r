@@ -1,0 +1,6 @@
+interface:
+  display_name: "R purrr"
+  short_description: "Type-stable mapping and list workflows"
+  default_prompt: "Use $r-purrr to design this iteration with explicit output types and failure handling."
+policy:
+  allow_implicit_invocation: true

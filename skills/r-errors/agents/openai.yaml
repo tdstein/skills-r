@@ -1,0 +1,8 @@
+interface:
+  display_name: "R Errors"
+  short_description: "Actionable R errors, warnings, and conditions"
+  default_prompt: "Use $r-errors to design or review the error and condition behavior in this R code."
+
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,8 @@
+interface:
+  display_name: "R Style"
+  short_description: "Readable R naming, layout, and tidyverse style"
+  default_prompt: "Use $r-style to review this R change for clarity, naming, and project-consistent style."
+
+policy:
+  allow_implicit_invocation: true
+

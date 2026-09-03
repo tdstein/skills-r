@@ -1,0 +1,45 @@
+{
+  "skill": "r-purrr",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "typed-map",
+      "name": "Enforce typed map results",
+      "prompt": "Map a parser over a character vector of dates and return Date values. The parser must fail if one element returns a character or a vector of length two.",
+      "description": "Use typed iteration to enforce Date output and length-one results for every element.",
+      "traps": ["Use map() and silently unlist", "Use as.Date after flattening mixed results", "Ignore length checks"],
+      "assertions": [
+        {"id": "use-typed-map", "text": "Uses a typed map or explicit prototype"},
+        {"id": "require-length-one", "text": "Requires length-one results"},
+        {"id": "preserve-date-type", "text": "Preserves Date semantics"},
+        {"id": "identify-bad-element", "text": "Allows the bad element to be identified"}
+      ]
+    },
+    {
+      "id": "safe-errors",
+      "name": "Retain structured mapping errors",
+      "prompt": "Process 10,000 API payloads. Invalid payloads should be retained for review rather than converted to indistinguishable NA values. Design the purrr result.",
+      "description": "Collect successful results and failures together while retaining enough identity for review.",
+      "traps": ["Use possibly with NA and discard the error", "Stop at the first failure", "Return only successful values"],
+      "assertions": [
+        {"id": "use-structured-errors", "text": "Uses safely or an equivalent structured result"},
+        {"id": "retain-results-and-errors", "text": "Retains both result and error"},
+        {"id": "preserve-element-identity", "text": "Preserves element identity or index"},
+        {"id": "surface-failures", "text": "Does not silently swallow failures"}
+      ]
+    },
+    {
+      "id": "parallel-boundary",
+      "name": "Prepare a map for parallel execution",
+      "prompt": "A map function uses a locally defined helper and an unqualified package function. The team wants in_parallel(). Review what must change before parallelizing.",
+      "description": "Audit function dependencies and execution assumptions before opting into parallel mapping.",
+      "traps": ["Claim any function can be parallelized unchanged", "Ignore package namespace requirements", "Promise parallelism always improves speed"],
+      "assertions": [
+        {"id": "make-dependencies-explicit", "text": "Makes dependencies explicit or namespace-qualified"},
+        {"id": "address-worker-context", "text": "Mentions worker serialization or execution context"},
+        {"id": "choose-parallelism-explicitly", "text": "Treats in_parallel as an explicit choice"},
+        {"id": "measure-parallel-tradeoffs", "text": "Calls for measuring overhead and reproducibility"}
+      ]
+    }
+  ]
+}

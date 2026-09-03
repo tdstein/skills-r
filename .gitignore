@@ -1,0 +1,9 @@
+/*-workspace/
+.worktrees/
+.claude/worktrees/
+.Rproj.user/
+*.Rproj
+renv/library/
+renv/local/
+renv/staging/
+.DS_Store

@@ -1,0 +1,6 @@
+interface:
+  display_name: "R Tidyverse Core"
+  short_description: "Tidy data, tibbles, pipes, and types"
+  default_prompt: "Use $r-tidyverse-core to choose the right Tidyverse abstraction and preserve data shape and types."
+policy:
+  allow_implicit_invocation: true

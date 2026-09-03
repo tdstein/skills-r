@@ -1,0 +1,8 @@
+interface:
+  display_name: "R Project Layout"
+  short_description: "R packages, analyses, reports, and project boundaries"
+  default_prompt: "Use $r-project-layout to design or review this R project's directories and artifact boundaries."
+
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,6 @@
+interface:
+  display_name: "R dplyr"
+  short_description: "dplyr verbs, summaries, joins, and groups"
+  default_prompt: "Use $r-dplyr to review this table transformation for grouping, join, and type-safety problems."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,45 @@
+{
+  "skill": "r-readr",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "identifier-type",
+      "name": "Preserve identifier text",
+      "prompt": "A CSV has account_id values like 00123 and 00456. read_csv() guesses them as integers. Review the import contract and prevent loss of leading zeros.",
+      "description": "Declare identifier columns explicitly so parsing does not destroy meaningful leading zeros.",
+      "traps": ["Accept integer guessing", "Convert after parsing without considering lost zeros", "Treat identifiers as measurements"],
+      "assertions": [
+        {"id": "pin-identifier-character", "text": "Pins account_id as character"},
+        {"id": "reject-type-guessing-contract", "text": "Explains why type guessing is not a contract"},
+        {"id": "use-explicit-column-types", "text": "Uses explicit col_types"},
+        {"id": "validate-representative-values", "text": "Suggests validating representative identifiers"}
+      ]
+    },
+    {
+      "id": "locale-and-date",
+      "name": "Specify locale-sensitive parsing",
+      "prompt": "A European export uses semicolon separators, comma decimals, dot grouping marks, and dates like 31/12/2025. Write the import decisions and identify the parser settings that must be explicit.",
+      "description": "Make delimiter, numeric locale, date format, and column types explicit for a regional export.",
+      "traps": ["Rely on system locale", "Use the default comma delimiter", "Parse the date as month/day"],
+      "assertions": [
+        {"id": "set-delimiter", "text": "Sets delimiter or uses the appropriate reader"},
+        {"id": "define-number-marks", "text": "Defines decimal and grouping marks"},
+        {"id": "define-date-parsing", "text": "Defines date format or locale"},
+        {"id": "pin-relevant-types", "text": "Pins relevant column types"}
+      ]
+    },
+    {
+      "id": "parsing-problems",
+      "name": "Quarantine parsing failures",
+      "prompt": "The file loads with a warning and 12 malformed numeric fields. The analyst wants to replace all failures with NA and continue. Give a safe review and quarantine strategy.",
+      "description": "Inspect malformed fields and define a contract for failing or quarantining bad input.",
+      "traps": ["Ignore problems()", "Treat parse failures as ordinary missingness", "Drop bad rows without source context"],
+      "assertions": [
+        {"id": "inspect-parser-problems", "text": "Inspects problems()"},
+        {"id": "distinguish-malformed-and-missing", "text": "Distinguishes malformed input from source missingness"},
+        {"id": "retain-failure-context", "text": "Retains row/column/raw-value context for review"},
+        {"id": "define-failure-contract", "text": "Defines whether the pipeline fails or quarantines based on a contract"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "skill": "r-dependencies",
+  "version": "0.1.0",
+  "cases": [
+    {
+    "id": "imports-versus-suggests",
+    "name": "imports-versus-suggests",
+    "description": "The solution places dependencies in DESCRIPTION according to runtime necessity.",
+    "prompt": "A package function always calls dplyr::filter(), tests use testthat, and an optional plot method calls ggplot2 only when requested. Recommend the DESCRIPTION fields and code guards.",
+    "traps": ["The model puts every package in Depends or relies on the developer's attached packages."],
+    "assertions": [
+      {"id": "1.1", "text": "Places dplyr in Imports because package runtime code requires it."},
+      {"id": "1.2", "text": "Places testthat in development/test dependencies such as Suggests."},
+      {"id": "1.3", "text": "Places optional ggplot2 in Suggests and guards availability with requireNamespace() or equivalent."},
+      {"id": "1.4", "text": "Does not recommend putting all packages in Depends by default."}
+    ]
+    },
+    {
+    "id": "renv-does-not-replace-description",
+    "name": "renv-does-not-replace-description",
+    "description": "The answer distinguishes project lockfiles from package dependency metadata.",
+    "prompt": "A package repository has renv.lock, but DESCRIPTION omits a package used by an exported function. Is the package dependency declared correctly?",
+    "traps": ["The model says renv.lock is sufficient for package users."],
+    "assertions": [
+      {"id": "2.1", "text": "Says renv.lock does not replace DESCRIPTION for an R package."},
+      {"id": "2.2", "text": "Requires the runtime dependency to be declared in Imports or an appropriate package field."},
+      {"id": "2.3", "text": "Mentions regenerating NAMESPACE/documentation and running package checks."}
+    ]
+    },
+    {
+    "id": "safe-upgrade-workflow",
+    "name": "safe-upgrade-workflow",
+    "description": "The upgrade plan preserves evidence and validates lockfile and behavior changes.",
+    "prompt": "Upgrade a tidyverse dependency in a production analysis project using renv. Give a safe sequence and identify what must be reviewed before merging.",
+    "traps": ["The model deletes renv.lock, installs latest packages globally, and commits without tests."],
+    "assertions": [
+      {"id": "3.1", "text": "Updates the project environment rather than a global library."},
+      {"id": "3.2", "text": "Reviews renv.lock changes for unintended packages, repositories, or version changes."},
+      {"id": "3.3", "text": "Runs tests or analysis checks after the upgrade."},
+      {"id": "3.4", "text": "Does not recommend deleting the lockfile as conflict resolution."}
+    ]
+    }
+  ]
+}
