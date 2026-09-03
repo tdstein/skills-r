@@ -28,9 +28,11 @@ Treat data import as a reproducible schema boundary. Define how the file is deli
 2. Prefer explicit `col_types` for stable pipelines. Use guessing for exploration, then inspect and pin the resulting specification.
 3. Define `na`, `locale()`, date formats, decimal marks, and grouping marks when the source is not unambiguous.
 4. Read a representative sample, inspect the column specification, and check `problems()` immediately.
-5. Decide whether malformed fields are errors, warnings requiring quarantine, or recoverable missing values.
-6. Validate row counts, key columns, types, and sentinel values before handing data to `r-dplyr` or `r-tidyr`.
-7. Use `write_csv()`/related writers with explicit output expectations; do not treat serialization as a neutral round trip for every R type.
+5. Rename non-syntactic or inconsistent source columns deliberately at the import boundary, preserving a traceable mapping to the source schema.
+6. Decide whether malformed fields are errors, warnings requiring quarantine, or recoverable missing values.
+7. When importing more than one file, retain a source identifier such as the path or file name before combining records.
+8. Validate row counts, key columns, types, and sentinel values before handing data to `r-dplyr` or `r-tidyr`.
+9. Use `write_csv()`/related writers with explicit output expectations; do not treat serialization as a neutral round trip for every R type.
 
 ## Important constraints
 
@@ -38,6 +40,7 @@ Treat data import as a reproducible schema boundary. Define how the file is deli
 - A parsing failure is not the same as an ordinary missing value. Keep the diagnostics and source row context.
 - Locale is part of the parser configuration. A comma decimal mark, date order, or non-English month name must be explicit.
 - Use `col_select` to limit imported data when appropriate, but confirm skipped columns are not needed for validation.
+- CSV is a portable text interchange format, not a type-preserving cache. Use RDS when preserving an exact R object matters, or Parquet when a typed, cross-language intermediate format is appropriate.
 - Do not clean malformed text with broad substitutions before determining whether the source format or parser specification is wrong.
 
 Read [references/types-locales.md](references/types-locales.md) for column specifications, locales, and parsers. Read [references/diagnostics-and-contracts.md](references/diagnostics-and-contracts.md) for problems, validation, and reproducible import contracts.

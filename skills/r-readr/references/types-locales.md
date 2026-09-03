@@ -8,6 +8,10 @@
 - Keep identifiers such as ZIP codes, account numbers, and codes as character even when they contain only digits.
 - Use `col_skip()` for intentionally excluded columns and document why they are not part of the contract.
 
+## Column names
+
+External files often use spaces, punctuation, or inconsistent casing in headers. Rename these once at the import boundary to stable, syntactic names such as `student_id`, and keep the original-to-new mapping obvious in code or source documentation. `janitor::clean_names()` is useful when its heuristics match the project contract, but inspect the result for collisions or domain-specific names that need an explicit `rename()`.
+
 ## Locales
 
 Pass `locale(decimal_mark = ",", grouping_mark = ".")` or a suitable date/time configuration when the source requires it. Do not rely on the machine's system locale for a shared pipeline.

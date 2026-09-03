@@ -25,11 +25,13 @@ Use this skill for the shared grammar and data model behind tidyverse code. Keep
 ## Working rules
 
 - Treat tidy data as one observation per row, one variable per column, and one observational unit per table. If the task changes table shape, route to `r-tidyr`.
+- Choose the representation that makes the current analysis natural. Tidy data is usually the useful working form, but a wide or nested form can be appropriate at an interface; make any untidy → transform → tidy transition explicit.
 - Prefer tibbles for rectangular data. Preserve useful names and avoid converting to a bare matrix or silently dropping dimensions.
 - Use the native pipe `|>` for ordinary function composition. Use `%>%` only when existing code or a package-specific feature requires it.
 - Keep transformations in the package that owns them: `r-dplyr` for rows, columns, values, and joins; `r-tidyr` for shape; `r-ggplot2` for plots; `r-purrr` for mapping; `r-readr` for file parsing.
 - Inspect types with `str()`, `dplyr::glimpse()`, `vctrs::vec_ptype()`, or targeted assertions before relying on implicit coercion.
 - Make missing-value behavior explicit. `NA` is not the same as `NULL`, an empty character value, or a missing column.
+- Distinguish missing values observed in the source from structural missing values introduced by a reshape. Drop or fill only when that distinction is part of the data contract.
 - Preserve grouping intentionally. After a grouped operation, inspect `dplyr::group_vars()` and use `.groups` or `ungroup()` when downstream code must not inherit grouping.
 - Use tidy evaluation only where it improves a reusable interface. In package functions, distinguish data-masked arguments from ordinary strings and use `.data`/`.env` pronouns when ambiguity is possible.
 

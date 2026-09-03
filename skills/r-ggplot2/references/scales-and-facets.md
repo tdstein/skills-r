@@ -8,3 +8,5 @@
 - Use facets when panels share a meaningful comparison and keep scales fixed unless free scales improve legibility without obscuring magnitude differences.
 - Use `theme()` for visual hierarchy and accessibility. Check color palettes in grayscale or with a color-vision deficiency simulator when color carries meaning.
 - Prefer direct labels or clear legends over encoding too many groups with color, shape, and linetype simultaneously.
+- Treat warnings about removed rows as data-quality information. Suppress them with `na.rm = TRUE` only after the omission is expected and has been handled deliberately upstream.
+- For a reproducible export, assign the completed plot to an object and call `ggsave()` with that plot, a known relative path, and explicit dimensions.

@@ -48,7 +48,9 @@ reports/
 figures/
 ```
 
-Use a project root detected by `here` or an equivalent explicit path strategy. Avoid `setwd()` inside functions and reports. Keep raw data immutable when possible, and record how derived data was produced.
+Treat scripts and their input data as the source of truth: a clean R session must be able to recreate derived data, figures, and reports without objects from a previous interactive session. Use a project root detected by `here` or an equivalent explicit path strategy. Avoid `setwd()` inside functions and reports, and use relative paths rather than machine-specific absolute paths. Keep raw data immutable when possible, record how derived data was produced, and write generated artifacts to named locations.
+
+Name files so they are machine readable, describe their contents, and sort in execution order where that order matters, for example `01-import.R`, `02-clean.R`, and `report-2026-09-03.qmd`. Do not use spaces, case-only distinctions, or vague names such as `final.R` and `temp.R`.
 
 ## Routing
 

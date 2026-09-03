@@ -27,3 +27,4 @@ Use this reference when a transformation may change row count, column types, gro
 - `NULL` removes or omits an object in many list and argument contexts; `NA` is a typed missing value.
 - Recycling is not a substitute for validating row alignment. Prefer joins or explicit vector-size checks when data comes from separate sources.
 - A wide table is not automatically untidy; decide from the observational unit and variable meaning, then use `r-tidyr` if the representation must change.
+- Tidy data is a consistent working representation, not a permanent destination. It is reasonable to widen for a presentation or API boundary, then pivot again before an analysis that benefits from variables in columns.

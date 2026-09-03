@@ -16,6 +16,7 @@ Prefer a small refactor over a style comment when code is hard to understand. Ke
 - `df2`, `tmp`, or `x` surviving beyond a tiny local scope.
 - A function that calls `setwd()`, changes options globally, or attaches packages.
 - A pipeline that mixes data transformation, file writes, plotting, and global assignment.
+- A script that works only because a previous session created an object, set an option, or changed the working directory.
 - A comment that describes what a verb already says but omits the join key or statistical reason.
 - A broad `suppressWarnings()` or `suppressMessages()` around a whole workflow.
 - Repeated string literals, column names, or magic cutoffs that should be named constants.
@@ -34,4 +35,3 @@ Run the repository's configured commands when they differ. Formatting is a mecha
 - [The tidyverse style guide](https://style.tidyverse.org/)
 - [styler](https://styler.r-lib.org/)
 - [lintr](https://lintr.r-lib.org/)
-

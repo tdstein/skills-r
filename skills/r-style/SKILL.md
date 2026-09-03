@@ -37,6 +37,7 @@ Write R that is easy to scan, diff, test, and extend. Prefer the local project c
 - Prefer `|>` for base-R code and `%>%` where tidyverse conventions or magrittr placeholders add real value. Do not mix pipe styles casually in one file.
 - Keep joins, filters, and summaries close to the point where their assumptions are visible. Name intermediate data when it clarifies grain or prevents repeated computation.
 - Put `library()` calls in scripts or interactive entrypoints, not inside reusable functions.
+- Keep a shared analysis script reproducible from a fresh session: capture setup, inputs, and generated outputs in code instead of relying on objects in the global environment or console history.
 
 ## Comments and review
 

@@ -30,6 +30,7 @@ Use purrr when the unit of work is applying a function to each element, especial
 - Use `imap()` when the element name or index is part of the computation.
 - Use `walk()`/`pwalk()` for side effects when the input, not the side-effect result, should flow onward.
 - Use `possibly()` when a fallback value is a valid result, `safely()` when callers need both result and error, and `quietly()` when output/messages must be captured.
+- For many files, list paths with `full.names = TRUE`, preserve path or file names when they are data, and use `list_rbind(names_to = ...)` only after validating a compatible schema.
 
 ## Reliability rules
 
@@ -37,6 +38,7 @@ Use purrr when the unit of work is applying a function to each element, especial
 - Keep outputs type-stable. If failures are possible, choose a typed fallback or return a structured result that records the error.
 - Expect purrr to annotate indexed errors; preserve that context when reporting or rethrowing.
 - Do not use purrr merely to replace a simple vectorized operation or a dplyr `across()` transformation.
+- Prefer several simple, inspectable mapping stages over one opaque per-element function when the same cleanup can be understood across all inputs. Bind earlier when the remaining work is ordinary table transformation.
 - `in_parallel()` is an explicit execution choice, not a synonym for `pmap()`. It also requires `carrier` (version 0.3.0 or newer); use it only when the function is self-contained, dependencies are explicit, and parallel overhead is justified.
 
 Read [references/type-safety-and-errors.md](references/type-safety-and-errors.md) for typed mapping and failure handling. Read [references/parallel-and-side-effects.md](references/parallel-and-side-effects.md) when mapping performs I/O or parallel work.

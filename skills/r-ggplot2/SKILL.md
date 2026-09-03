@@ -28,9 +28,10 @@ Treat a plot as a mapping from data to visual encodings built from layers. Make 
 2. Map variables inside `aes()`; set constants outside `aes()`.
 3. Choose a geom whose statistical assumptions match the question. Use `stat =` or `after_stat()` deliberately when mapping computed variables.
 4. Add scales, labels, facets, and coordinates to support interpretation rather than decoration.
-5. Check discrete/continuous scale types, missing values, transformed axes, and overplotting.
+5. Check discrete/continuous scale types, missing values, transformed axes, and overplotting. Investigate removal warnings; use `na.rm = TRUE` only after intentionally handling or excluding those observations.
 6. Use `theme()` for local adjustments and a reusable theme function for project-wide consistency.
-7. Test the plot with representative data, including empty groups and unusual labels.
+7. Save final plots from a named plot object with explicit filename, width, and height.
+8. Test the plot with representative data, including empty groups and unusual labels.
 
 ## Non-obvious rules
 

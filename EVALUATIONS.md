@@ -134,6 +134,8 @@ Use **pending** until a repeatable run and review exist.
   maintenance and reproducibility needs.
 - Place source, tests, data, generated artifacts, and documentation correctly.
 - Identify files that should not be committed.
+- Detect an analysis that relies on a saved workspace or absolute paths, and
+  make it reproducible from a clean session.
 
 #### `r-dependencies`
 
@@ -161,6 +163,8 @@ Use **pending** until a repeatable run and review exist.
 - Recognize whether a requested result is tidy and identify its unit of
   observation.
 - Track column types and shape across a multi-package pipeline.
+- Distinguish observed missing values from structural missingness introduced by
+  a reshape.
 - Route a mixed request to `r-readr`, `r-tidyr`, `r-dplyr`, `r-purrr`, or
   `r-ggplot2` without duplicating package guidance.
 
@@ -188,6 +192,8 @@ Use **pending** until a repeatable run and review exist.
   or a scale.
 - Choose a scale, facet, or coordinate transformation for the stated visual
   question.
+- Preserve and investigate missing-value warnings, and export a named final
+  plot with reproducible dimensions.
 - Avoid hiding data-quality or grouping problems inside a plot call.
 
 #### `r-purrr`
@@ -204,6 +210,9 @@ Use **pending** until a repeatable run and review exist.
 - Configure missing values without converting valid strings accidentally.
 - Surface malformed records through parse diagnostics and an appropriate
   failure policy.
+- Retain source-file provenance when combining inputs, normalize source column
+  names deliberately, and choose a serialization format that preserves the
+  required types.
 
 ## Evaluation lifecycle
 
