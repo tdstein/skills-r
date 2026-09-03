@@ -1,6 +1,6 @@
 ---
 name: r-ggplot2
-description: Use when an R task creates, reviews, or troubleshoots ggplot2 visualizations, aesthetics, geoms, stats, scales, facets, themes, or coordinates. Apply for plotting decisions and visual encodings; use r-dplyr or r-tidyr for substantial data preparation and do not hide aggregation logic inside a chart.
+description: "Use for ggplot2 plots, aesthetics, geoms, stats, scales, facets, themes, and coordinates; prepare substantial data with dplyr or tidyr."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

@@ -1,6 +1,6 @@
 ---
 name: r-dependencies
-description: "Use when adding, declaring, resolving, locking, upgrading, or auditing R package dependencies. Apply to DESCRIPTION, NAMESPACE, renv, pak, lockfiles, and reproducible environments. For directory organization use r-project-layout; for package API style use r-style."
+description: "Use to declare, lock, upgrade, or audit R package dependencies with DESCRIPTION, NAMESPACE, renv, pak, and lockfiles."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

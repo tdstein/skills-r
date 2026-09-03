@@ -1,6 +1,6 @@
 ---
 name: r-core
-description: "Use for R code that depends on vectors, tibbles, data frames, missing values, recycling, pipes, or tidy evaluation. Apply when choosing R object types or explaining shared tidyverse semantics. For package structure, use r-project-layout; for style, use r-style."
+description: "Use for R vectors, tibbles, data frames, missing values, recycling, pipes, and tidy evaluation; choose object types while preserving size and type semantics."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

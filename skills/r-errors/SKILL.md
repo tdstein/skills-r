@@ -1,6 +1,6 @@
 ---
 name: r-errors
-description: "Use when designing, raising, catching, formatting, or testing R errors, warnings, and messages. Apply to rlang conditions, custom classes, error context, recovery, and user-facing diagnostics. For test organization use r-testing; for general R types use r-core."
+description: "Use to design or handle R errors, warnings, messages, rlang conditions, recovery, backtraces, and user-facing diagnostics."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

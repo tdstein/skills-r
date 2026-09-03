@@ -1,6 +1,6 @@
 ---
 name: r-style
-description: "Use when writing or reviewing R naming, formatting, comments, pipelines, function layout, or tidyverse style. Apply to source files, tests, scripts, and package code. For automated lint configuration use r-lint when available; for project structure use r-project-layout."
+description: "Use for R naming, formatting, comments, pipelines, function layout, and Tidyverse style; improve readability without changing behavior."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

@@ -1,6 +1,6 @@
 ---
 name: r-tidyr
-description: Use when an R task changes the shape or nesting of tidy data with pivot_longer(), pivot_wider(), separate/unite, nest, unnest, or rectangling. Apply for row/column representation and list-column structure; use r-dplyr for values and relationships and r-readr for file parsing.
+description: "Use for tidyr table-shape changes: pivot, separate, unite, nest, unnest, and rectangling; use dplyr for values and joins."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

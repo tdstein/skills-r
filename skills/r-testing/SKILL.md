@@ -1,6 +1,6 @@
 ---
 name: r-testing
-description: "Use when writing, reviewing, or organizing tests for R functions, packages, data workflows, or reports. Apply to testthat expectations, fixtures, snapshots, warnings/errors, optional dependencies, and deterministic integration tests. For benchmarking use a dedicated performance skill; for condition design use r-errors."
+description: "Use to write or review R tests with testthat, fixtures, snapshots, mocks, warnings, errors, optional dependencies, and deterministic integrations."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

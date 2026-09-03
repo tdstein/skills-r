@@ -1,6 +1,6 @@
 ---
 name: r-purrr
-description: Use when an R task maps functions over vectors, lists, data frames, or list-columns, needs type-stable iteration, safely handles per-element failures, or uses map2/pmap/possibly/safely. Apply for functional iteration; use r-dplyr for column transformations and r-tidyr for table shape.
+description: "Use for purrr functional iteration, map2/pmap, typed outputs, list-columns, safely/possibly, and per-element failures."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

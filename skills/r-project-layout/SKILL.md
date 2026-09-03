@@ -1,6 +1,6 @@
 ---
 name: r-project-layout
-description: "Use when creating, reviewing, or reorganizing an R package, analysis project, report, or reproducible workspace. Apply to decisions about R/, tests, data-raw, vignettes, Quarto/R Markdown, and project boundaries. For dependency locking use r-dependencies."
+description: "Use to design or reorganize R packages, analysis projects, reports, and reproducible workspaces, including R/, tests, Quarto, and R Markdown."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

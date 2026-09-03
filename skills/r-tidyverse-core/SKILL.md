@@ -1,6 +1,6 @@
 ---
 name: r-tidyverse-core
-description: Apply when an R task uses tidyverse conventions, tibbles, pipes, tidy data, vector types, or shared tidy-evaluation behavior. Use this skill to choose the right tidyverse package and preserve data shape and type invariants; use sibling skills for package-specific transformations, plotting, iteration, or parsing.
+description: "Use for shared Tidyverse data-shape, tibble, pipe, type, grouping, and tidy-evaluation decisions; route package-specific work to sibling skills."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

@@ -1,6 +1,6 @@
 ---
 name: r-readr
-description: Use when an R task reads delimited or fixed-width text, writes delimited text, parses dates/numbers/logic, defines locales, or diagnoses parsing problems with readr. Apply to import contracts and diagnostics; use r-dplyr for cleaning and r-tidyr for reshaping after parsing.
+description: "Use for readr import/export of delimited or fixed-width text, parsing, locales, column types, missing values, and diagnostics."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true

@@ -1,6 +1,6 @@
 ---
 name: r-dplyr
-description: Use when an R task filters, selects, mutates, arranges, groups, summarises, joins, or otherwise transforms rectangular data with dplyr. Apply for relational and column-wise operations; use r-tidyr for changing table shape, r-readr for parsing files, and r-ggplot2 for visualization.
+description: "Use for dplyr table transformations: filter, select, mutate, summarise, group, join, and column-wise operations; use tidyr for table shape."
 license: MIT
 compatibility: "R 4.1+ and the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar Agent Skills clients."
 user-invocable: true
