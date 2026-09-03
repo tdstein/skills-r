@@ -1,0 +1,54 @@
+{
+  "skill": "r-connections",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "connection-lifecycle",
+      "name": "connection-lifecycle",
+      "description": "The I/O code chooses a transport and closes connections on every exit path.",
+      "prompt": "Write an R helper that reads UTF-8 text from a file or URL connection and guarantees cleanup when reading fails.",
+      "traps": [
+        "Leaves an opened connection unclosed after an error",
+        "Uses a binary reader for arbitrary text or assumes the caller owns a connection it opened"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Registers cleanup immediately after opening a connection."
+        },
+        {
+          "id": "1.2",
+          "text": "Makes text encoding explicit and distinguishes text from binary I/O."
+        },
+        {
+          "id": "1.3",
+          "text": "States ownership behavior when the caller supplies an existing connection."
+        }
+      ]
+    },
+    {
+      "id": "transport-versus-parsing",
+      "name": "transport-versus-parsing",
+      "description": "The answer keeps connection transport separate from schema parsing and project paths.",
+      "prompt": "A CSV file is read through a compressed connection. Explain which part belongs to connection handling, which belongs to readr, and what tests are needed for non-ASCII data.",
+      "traps": [
+        "Treats the connection as responsible for column types and table schema",
+        "Assumes ASCII behavior covers UTF-8 and conversion failures"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Separates byte or character transport from delimited-file parsing."
+        },
+        {
+          "id": "2.2",
+          "text": "Tests non-ASCII text and encoding conversion explicitly."
+        },
+        {
+          "id": "2.3",
+          "text": "Routes paths and artifact ownership to project-layout guidance."
+        }
+      ]
+    }
+  ]
+}

@@ -26,6 +26,7 @@ Write R that is easy to scan, diff, test, and extend. Prefer the local project c
 
 - Use `snake_case` for functions, variables, and file names. Use descriptive nouns for data and verbs for transformations.
 - Name predicate functions with a clear question or property, such as `is_valid_id()` or `has_missing()`.
+- Prefer syntactic, portable names in authored code, especially ASCII names when code must run across locales. Preserve non-syntactic names at data boundaries rather than silently repairing them; use backticks only where the external schema requires them.
 - Keep one primary function or cohesive small group per source file in packages; name files after the public concept, not an arbitrary ticket.
 - Use explicit namespaces in package code when ownership is unclear or a dependency is in `Suggests`.
 - Keep functions small enough that input contract, transformation, and return value are visible without scrolling through unrelated helpers.
@@ -36,12 +37,14 @@ Write R that is easy to scan, diff, test, and extend. Prefer the local project c
 - Use a pipeline when each step transforms the previous result. Do not pipeline unrelated side effects or hide important branching in a long chain.
 - Prefer `|>` for base-R code and `%>%` where tidyverse conventions or magrittr placeholders add real value. Do not mix pipe styles casually in one file.
 - Keep joins, filters, and summaries close to the point where their assumptions are visible. Name intermediate data when it clarifies grain or prevents repeated computation.
+- Use `[` for collections and `[[` for single values or columns so the code communicates its shape contract. In functions, preserve dimensions explicitly with `drop = FALSE` and avoid partial matching.
 - Put `library()` calls in scripts or interactive entrypoints, not inside reusable functions.
 - Keep a shared analysis script reproducible from a fresh session: capture setup, inputs, and generated outputs in code instead of relying on objects in the global environment or console history.
 
 ## Comments and review
 
 - Comment why a non-obvious choice is required, especially around type coercion, grouping, database translation, or statistical assumptions.
+- When performance or memory is part of the review, record the observed behavior with a focused experiment (`tracemem()`, `lobstr::obj_size()`, or a benchmark) instead of asserting that an operation copies or is cheap from syntax alone.
 - Do not comment every obvious verb. Replace stale explanatory comments with clearer code.
 - Document exported package functions with roxygen2; keep examples short and runnable.
 - Avoid commented-out code, hidden global state, and unqualified `setwd()` in reusable code.

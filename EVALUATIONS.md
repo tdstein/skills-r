@@ -21,6 +21,17 @@ zero error rate, no improvement, or a completed baseline.
 | [`r-ggplot2`](skills/r-ggplot2/) | Aesthetic mapping versus setting, layers, statistics, scales, and coordinates | Pending | — |
 | [`r-purrr`](skills/r-purrr/) | Type-stable mapping, list-columns, errors, and explicit iteration choices | Pending | — |
 | [`r-readr`](skills/r-readr/) | Type inference, locales, missing values, malformed input, and parse diagnostics | Pending | — |
+| [`r-functions`](skills/r-functions/) | Function contracts, lazy evaluation, control flow, recursion, and cleanup | Pending | — |
+| [`r-environments`](skills/r-environments/) | Bindings, lexical lookup, namespaces, closures, and persistent state | Pending | — |
+| [`r-functional-programming`](skills/r-functional-programming/) | Purity boundaries, factories, operators, memoisation, and composition | Pending | — |
+| [`r-object-oriented`](skills/r-object-oriented/) | S3, S4, and R6 representation, validation, dispatch, and aliasing | Pending | — |
+| [`r-metaprogramming`](skills/r-metaprogramming/) | ASTs, quotation, quosures, data masks, code generation, and translation | Pending | — |
+| [`r-debugging`](skills/r-debugging/) | Reproducible diagnosis, tracebacks, batch failures, and regression handoff | Pending | — |
+| [`r-benchmarking`](skills/r-benchmarking/) | Profiling, microbenchmarks, allocations, garbage collection, and scaling | Pending | — |
+| [`r-performance`](skills/r-performance/) | Evidence-based optimization, vectorization, allocation, and trade-offs | Pending | — |
+| [`r-interop`](skills/r-interop/) | `.Call`, Rcpp, protection, conversion, registration, and portability | Pending | — |
+| [`r-connections`](skills/r-connections/) | Connection lifecycle, text/binary I/O, transport, and encodings | Pending | — |
+| [`r-documentation`](skills/r-documentation/) | Reproducible examples, generated docs, vignettes, books, and publishing | Pending | — |
 
 ## Goals
 
@@ -213,6 +224,91 @@ Use **pending** until a repeatable run and review exist.
 - Retain source-file provenance when combining inputs, normalize source column
   names deliberately, and choose a serialization format that preserves the
   required types.
+
+### Advanced R programming
+
+#### `r-functions`
+
+- Make argument matching, lazy evaluation, defaults, and `...` behavior
+  explicit.
+- Choose scalar, vectorized, loop, recursive, or composed control flow from
+  the input and output shape.
+- Restore process state on success and error with deliberate cleanup.
+
+#### `r-environments`
+
+- Distinguish lexical lookup, caller lookup, package attachment, and namespace
+  lookup.
+- Design closures, caches, and stateful APIs with explicit identity and reset
+  behavior.
+- Distinguish absent bindings from bindings whose value is `NULL`.
+
+#### `r-functional-programming`
+
+- Separate pure computation from I/O, randomness, logging, and mutation.
+- Design function factories and operators that preserve intended contracts.
+- Memoise only computations whose inputs and relevant external state are
+  stable for the cache lifetime.
+
+#### `r-object-oriented`
+
+- Choose S3, S4, or R6 from representation, dispatch, identity, and lifecycle
+  requirements.
+- Separate constructors, validators, helpers, generics, and methods.
+- Test subclass restoration, dispatch paths, and R6 aliasing or cloning.
+
+#### `r-metaprogramming`
+
+- Distinguish AST structure, quoted code, values, and evaluation environments.
+- Capture caller expressions with the appropriate expression or quosure tool.
+- Generate and translate only allowlisted structures with explicit escaping and
+  unsupported-node behavior.
+
+#### `r-debugging`
+
+- Reduce failures to repeatable, minimal examples with useful non-failing
+  contrasts.
+- Choose traceback, interactive, batch, or native diagnostics from the failure
+  mode.
+- Turn confirmed causes into focused regression tests without leaking inputs.
+
+#### `r-benchmarking`
+
+- Profile a realistic workload before microbenchmarking a suspected operation.
+- Report timing, allocation, garbage collection, input regimes, and practical
+  impact.
+- Check behavioral equivalence before interpreting a speed difference.
+
+#### `r-performance`
+
+- Optimize only after evidence identifies a material bottleneck and target.
+- Prefer whole-object operations and avoid allocation churn when their
+  contracts match.
+- Recheck values, attributes, missingness, memory, and scaling after a change.
+
+#### `r-interop`
+
+- Validate R-facing types, lengths, dimensions, indexing, and missingness
+  before native access.
+- Protect allocated SEXPs and use R-aware error paths across `.Call` and Rcpp
+  boundaries.
+- Test generated wrappers, registration, compilers, platforms, and GC-sensitive
+  behavior.
+
+#### `r-connections`
+
+- Choose a transport independently from table parsing and project path layout.
+- Close owned connections on every exit path and preserve caller-owned
+  connections.
+- Test text encodings, binary payloads, empty inputs, and conversion failures.
+
+#### `r-documentation`
+
+- Keep documentation source distinct from generated `.Rd`, site, and navigation
+  artifacts.
+- Make examples copyable, deterministic, and explicit about optional
+  dependencies.
+- Rebuild and review rendered output from a clean, declared environment.
 
 ## Evaluation lifecycle
 

@@ -50,8 +50,13 @@ devtools::check()
 
 Use `R CMD check` in CI or release automation. Review warnings about undeclared packages, examples, vignettes, and missing imports rather than suppressing them.
 
+Documentation and vignette code is part of the package's dependency surface:
+packages used only there generally belong in `Suggests`, and examples should
+remain runnable when optional dependencies are absent or should skip with a
+clear condition. Keep rendering-tool dependencies in the documentation or
+project environment when they are not needed by the installed package.
+
 ## Further reading
 
 - [R Packages: Dependencies](https://r-pkgs.org/dependencies.html)
 - [R Packages: Namespace](https://r-pkgs.org/namespace.html)
-

@@ -22,6 +22,22 @@ metadata:
 
 Treat dependencies as declared, reproducible inputs rather than packages that happen to be installed in one developer's library.
 
+## Identify the dependency contract
+
+Keep three contracts distinct:
+
+- A package's `DESCRIPTION` and generated `NAMESPACE` describe what its code
+  needs and what it exposes.
+- An analysis or documentation project's lockfile describes the resolved
+  environment used to run that project.
+- A build or publishing workflow may need additional tools for rendering,
+  examples, vignettes, or site generation; declare those separately from
+  runtime imports.
+
+Do not make a project lockfile substitute for package metadata, and do not
+hide undeclared dependencies behind an interactive session or a broad
+development environment.
+
 ## Package declarations
 
 - Put runtime packages required by package code in `Imports` (or `Depends` only when attachment is intentionally part of the API).
@@ -35,7 +51,10 @@ Treat dependencies as declared, reproducible inputs rather than packages that ha
 - Use `renv` when a project needs reproducible package versions across machines or time. Commit `renv.lock` when the project policy treats it as the source of environment truth.
 - Use `pak` or the project's established installer for resolution and installation; do not add `install.packages()` calls to reusable code, tests, or reports.
 - Separate package metadata dependencies from an analysis project's resolved environment. A package's `DESCRIPTION` is not replaced by an `renv.lock`.
-- Record repositories and external sources when dependencies come from GitHub, R-universe, Bioconductor, or local paths.
+- Record repositories and external sources when dependencies come from GitHub, R-universe, Bioconductor, or local paths. Pin an immutable commit, tag, or release when practical.
+- Record the R version, repository configuration, and relevant system/toolchain
+  assumptions when they affect reproducibility. A package list without its
+  resolution context is not a complete environment description.
 
 ## Upgrade and removal workflow
 
@@ -45,4 +64,6 @@ Search direct imports and examples before removing a dependency. Upgrade the sma
 
 - Read [references/package-dependency-workflow.md](references/package-dependency-workflow.md) for `DESCRIPTION`, `NAMESPACE`, and package checks.
 - Read [references/reproducible-environments.md](references/reproducible-environments.md) for renv/pak and analysis environments.
-- Use `r-project-layout` for where dependency artifacts live and `r-testing` for dependency-isolated tests.
+- Use `r-project-layout` for where package, analysis, and build artifacts live.
+- Use `r-documentation` for documentation dependencies, rendered outputs, and publishing metadata.
+- Use `r-testing` for dependency-isolated tests.

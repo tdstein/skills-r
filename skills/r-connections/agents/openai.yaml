@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Connections"
+  short_description: "R file, stream, text, and binary I/O"
+  default_prompt: "Use $r-connections to design or review safe R connection-based I/O."
+
+policy:
+  allow_implicit_invocation: true

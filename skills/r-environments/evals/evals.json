@@ -1,0 +1,54 @@
+{
+  "skill": "r-environments",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "closure-state",
+      "name": "closure-state",
+      "description": "The design uses environment identity deliberately and gives each factory call independent state.",
+      "prompt": "Write an R counter factory. Two counters must not share state, while repeated calls to one counter should update its private count.",
+      "traps": [
+        "Stores state in the global environment",
+        "Creates one shared mutable environment outside the factory"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Creates private state inside each factory invocation."
+        },
+        {
+          "id": "1.2",
+          "text": "Explains that the returned function retains its enclosing environment."
+        },
+        {
+          "id": "1.3",
+          "text": "Tests independence across factory calls and persistence within one closure."
+        }
+      ]
+    },
+    {
+      "id": "namespace-versus-search-path",
+      "name": "namespace-versus-search-path",
+      "description": "The explanation distinguishes package attachment from namespace lookup and avoids accidental global writes.",
+      "prompt": "A package function works only after the user calls library() and a helper using <<- creates a global binding unexpectedly. Diagnose both issues.",
+      "traps": [
+        "Treats the attached package environment as the function's lexical environment",
+        "Accepts <<- fallback to the global environment as harmless"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Distinguishes package attachment from namespace imports and lexical lookup."
+        },
+        {
+          "id": "2.2",
+          "text": "Explains the ancestor search and global fallback behavior of <<-."
+        },
+        {
+          "id": "2.3",
+          "text": "Recommends explicit bindings or controlled ancestor updates."
+        }
+      ]
+    }
+  ]
+}

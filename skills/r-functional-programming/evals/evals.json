@@ -1,0 +1,81 @@
+{
+  "skill": "r-functional-programming",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "factory-force",
+      "name": "Freeze factory configuration",
+      "prompt": "Write an R function factory that captures a scalar configuration and returns a function used later, even if the caller's binding changes after factory construction.",
+      "description": "Design a closure whose configuration is evaluated at construction time and whose repeated work remains in the returned function.",
+      "traps": [
+        "Capture a lazy promise without forcing it",
+        "Use a mutable global instead of a closure",
+        "Recompute construction-only work on every call"
+      ],
+      "assertions": [
+        {
+          "id": "force-configuration",
+          "text": "Forces or otherwise fixes configuration at factory construction"
+        },
+        {
+          "id": "capture-closure",
+          "text": "Returns a closure with the intended captured dependency"
+        },
+        {
+          "id": "separate-setup",
+          "text": "Separates one-time setup from per-call work"
+        }
+      ]
+    },
+    {
+      "id": "operator-contract",
+      "name": "Compose a function operator",
+      "prompt": "Wrap a function with timing and logging behavior so it can still be passed to a mapper. Preserve arguments and return values, and explain whether wrapper order matters.",
+      "description": "Create a reusable function operator with deliberate forwarding, side-effect boundaries, and composition semantics.",
+      "traps": [
+        "Drop variadic arguments",
+        "Change the wrapped return value accidentally",
+        "Assume all wrapper composition is commutative"
+      ],
+      "assertions": [
+        {
+          "id": "forward-arguments",
+          "text": "Forwards the wrapped function's arguments deliberately"
+        },
+        {
+          "id": "preserve-result",
+          "text": "Preserves the wrapped result unless a changed contract is intentional"
+        },
+        {
+          "id": "explain-order",
+          "text": "Explains observable effects of wrapper order"
+        }
+      ]
+    },
+    {
+      "id": "purity-routing",
+      "name": "Separate pure core from effects",
+      "prompt": "Design a data workflow that computes a deterministic transformation, reads files, and records progress. Identify which parts should be pure and where the relevant R skills apply.",
+      "description": "Partition computation from I/O and progress effects, then route iteration and testing concerns to the owning skills.",
+      "traps": [
+        "Claim the whole workflow is pure",
+        "Hide file I/O inside every callback",
+        "Use memoisation for changing external data"
+      ],
+      "assertions": [
+        {
+          "id": "isolate-effects",
+          "text": "Separates deterministic transformation from I/O and progress"
+        },
+        {
+          "id": "route-purrr",
+          "text": "Routes element-wise iteration to r-purrr"
+        },
+        {
+          "id": "avoid-unsafe-cache",
+          "text": "Recognizes that changing external data is not safely memoised without invalidation"
+        }
+      ]
+    }
+  ]
+}

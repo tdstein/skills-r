@@ -1,0 +1,56 @@
+{
+  "skill": "r-interop",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "call-protection",
+      "name": "call-protection",
+      "description": "The native boundary validates inputs, protects allocated objects, and returns through R-aware error paths.",
+      "prompt": "Review a .Call routine that allocates an intermediate vector, reads a numeric input, and can fail on empty input. Identify the safety requirements before shipping it.",
+      "traps": [
+        "Protects only the final result",
+        "Reads element zero before checking length",
+        "Uses exit() or lets a C++ exception escape"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Checks SEXPTYPE, length, dimensions, and empty-input behavior before access."
+        },
+        {
+          "id": "1.2",
+          "text": "Protects newly allocated intermediates and balances UNPROTECT calls."
+        },
+        {
+          "id": "1.3",
+          "text": "Uses R-aware error signaling rather than process termination."
+        }
+      ]
+    },
+    {
+      "id": "rcpp-package-boundary",
+      "name": "rcpp-package-boundary",
+      "description": "The package workflow distinguishes Rcpp export generation, dependency declarations, and correctness testing.",
+      "prompt": "Add a small Rcpp function to a package. Explain the source layout, DESCRIPTION entries, generated wrappers, and tests needed for missing values and indexing.",
+      "traps": [
+        "Hand-edits generated wrappers",
+        "Omits LinkingTo or compile-time declarations",
+        "Assumes C++ bool preserves R's NA"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Places native source under src/ and declares Rcpp through the package dependency workflow."
+        },
+        {
+          "id": "2.2",
+          "text": "Uses Rcpp::compileAttributes() or the established generator rather than hand-editing generated files."
+        },
+        {
+          "id": "2.3",
+          "text": "Tests one-based versus zero-based indexing and R missing-value semantics."
+        }
+      ]
+    }
+  ]
+}

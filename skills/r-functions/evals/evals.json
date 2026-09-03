@@ -1,0 +1,54 @@
+{
+  "skill": "r-functions",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "lazy-arguments",
+      "name": "lazy-arguments",
+      "description": "The function contract accounts for argument matching, lazy evaluation, and deliberate forcing.",
+      "prompt": "Review an R function with a default argument that is expensive and a callback that may never be used. Explain when each expression is evaluated and how to make construction-time capture explicit.",
+      "traps": [
+        "Claims all arguments are evaluated before the function runs",
+        "Forces every argument unconditionally"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Explains that arguments are promises and unused arguments are not evaluated."
+        },
+        {
+          "id": "1.2",
+          "text": "Distinguishes supplied-argument and default-argument evaluation contexts."
+        },
+        {
+          "id": "1.3",
+          "text": "Uses force() or another explicit boundary only when the contract requires it."
+        }
+      ]
+    },
+    {
+      "id": "control-flow-contract",
+      "name": "control-flow-contract",
+      "description": "The function uses control flow whose input shape and cleanup behavior are explicit.",
+      "prompt": "Write a loop-based R helper that handles empty input, stops on an invalid element, and restores a temporary option after an error.",
+      "traps": [
+        "Uses 1:length(x) for an empty vector",
+        "Leaves the option changed on an error path"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Uses seq_along() or an equivalent empty-safe iteration pattern."
+        },
+        {
+          "id": "2.2",
+          "text": "Defines the invalid-input and output-shape contract."
+        },
+        {
+          "id": "2.3",
+          "text": "Registers on.exit() cleanup immediately after changing process state."
+        }
+      ]
+    }
+  ]
+}

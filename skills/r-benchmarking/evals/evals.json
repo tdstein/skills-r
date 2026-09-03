@@ -1,0 +1,54 @@
+{
+  "skill": "r-benchmarking",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "profile-before-microbenchmark",
+      "name": "profile-before-microbenchmark",
+      "description": "The measurement plan chooses a realistic profile before isolating a confirmed hot operation.",
+      "prompt": "An R report is slow, but the team does not know whether parsing, grouping, or plotting dominates. Design a measurement plan and explain what should and should not be timed.",
+      "traps": [
+        "Begins with a toy microbenchmark of a guessed expression",
+        "Treats one elapsed-time result as proof of the bottleneck"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Profiles the realistic workload before choosing a focused microbenchmark."
+        },
+        {
+          "id": "1.2",
+          "text": "Keeps setup outside the timed expression unless setup is part of the user-visible operation."
+        },
+        {
+          "id": "1.3",
+          "text": "Uses representative input shape, size, classes, and missingness."
+        }
+      ]
+    },
+    {
+      "id": "memory-and-correctness",
+      "name": "memory-and-correctness",
+      "description": "The benchmark reports allocation and garbage collection while checking behavioral equivalence.",
+      "prompt": "Compare two R implementations of a transformation. What evidence should you collect before recommending the faster one?",
+      "traps": [
+        "Reports only mean elapsed time",
+        "Accepts different values or attributes because the candidate is faster"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Inspects allocation and garbage-collection behavior alongside timing."
+        },
+        {
+          "id": "2.2",
+          "text": "Checks output values, types, dimensions, names, classes, and missingness."
+        },
+        {
+          "id": "2.3",
+          "text": "Compares across relevant input sizes and states the practical impact."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "skill": "r-performance",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "optimize-measured-bottleneck",
+      "name": "optimize-measured-bottleneck",
+      "description": "The optimization starts from evidence, preserves behavior, and remeasures after each meaningful change.",
+      "prompt": "A profile shows repeated data-frame growth inside a hot loop. Propose an optimization workflow and explain what must be checked before adopting it.",
+      "traps": [
+        "Rewrites the code without a baseline",
+        "Assumes preallocation is always faster without checking behavior"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Establishes a realistic baseline and target before changing the implementation."
+        },
+        {
+          "id": "1.2",
+          "text": "Considers preallocation or whole-object operations while recognizing their contract and memory tradeoffs."
+        },
+        {
+          "id": "1.3",
+          "text": "Remeasures the realistic workload after the change."
+        }
+      ]
+    },
+    {
+      "id": "equivalence-and-memory",
+      "name": "equivalence-and-memory",
+      "description": "The faster candidate is accepted only when its output contract and resource profile fit the use case.",
+      "prompt": "A vectorized implementation is faster but allocates a large temporary matrix and changes a date-like class. Decide how to evaluate it.",
+      "traps": [
+        "Accepts speed without checking attributes or peak memory",
+        "Uses .Internal() as the first optimization"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Checks values, types, dimensions, names, classes, ordering, and missingness against a reference."
+        },
+        {
+          "id": "2.2",
+          "text": "Balances elapsed time against allocation and peak-memory constraints."
+        },
+        {
+          "id": "2.3",
+          "text": "Treats internals and unchecked shortcuts as last-resort techniques."
+        }
+      ]
+    }
+  ]
+}

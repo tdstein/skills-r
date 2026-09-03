@@ -16,6 +16,9 @@ geom_point(colour = "steelblue", alpha = 0.7)
 
 A layer can inherit the global mapping or override it with `inherit.aes = FALSE`. Use that for annotations or reference data that does not share the main data columns.
 
+Treat `+` as order-sensitive plot construction: later layers are drawn over
+earlier layers, so regrouping or reordering layers can change the result.
+
 ## Stats
 
 - A geom is a visual mark; a stat transforms data for that mark. They are paired defaults, not interchangeable concepts.

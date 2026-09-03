@@ -1,0 +1,6 @@
+interface:
+  display_name: "R Functional Programming"
+  short_description: "Closures, factories, operators, and composition"
+  default_prompt: "Use $r-functional-programming to design a composable R function, factory, or function operator."
+policy:
+  allow_implicit_invocation: true

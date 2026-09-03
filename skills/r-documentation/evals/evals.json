@@ -1,0 +1,54 @@
+{
+  "skill": "r-documentation",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "source-generated-boundary",
+      "name": "source-generated-boundary",
+      "description": "The documentation workflow edits source and regenerates owned artifacts.",
+      "prompt": "A package contributor manually edited an .Rd file and a rendered site page to fix documentation. Recommend the correct workflow.",
+      "traps": [
+        "Keeps the manual edits as the source of truth",
+        "Does not rebuild or review generated output"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Changes roxygen2, vignette, Quarto, R Markdown, or book source rather than generated output."
+        },
+        {
+          "id": "1.2",
+          "text": "Regenerates documentation and reviews links, warnings, and rendered output."
+        },
+        {
+          "id": "1.3",
+          "text": "Keeps generated artifacts reproducible from a clean session."
+        }
+      ]
+    },
+    {
+      "id": "reproducible-examples",
+      "name": "reproducible-examples",
+      "description": "Examples expose their inputs and dependencies and can be rerun by another reader.",
+      "prompt": "Design a vignette example that uses randomness, an optional package, and a rendered plot. What should the documentation make explicit?",
+      "traps": [
+        "Relies on the author's current session or random seed",
+        "Makes an optional dependency silently required"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Uses a deterministic seed or records inputs when output is intended to be reproducible."
+        },
+        {
+          "id": "2.2",
+          "text": "Declares or guards documentation-only and optional dependencies."
+        },
+        {
+          "id": "2.3",
+          "text": "Keeps reusable logic outside report chunks when appropriate."
+        }
+      ]
+    }
+  ]
+}

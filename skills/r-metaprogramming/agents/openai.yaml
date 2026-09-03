@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Metaprogramming"
+  short_description: "R expressions, quotation, masks, and evaluation"
+  default_prompt: "Use $r-metaprogramming to design or review this R expression, quosure, data mask, or code-generation workflow."
+
+policy:
+  allow_implicit_invocation: true

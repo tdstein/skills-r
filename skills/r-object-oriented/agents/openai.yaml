@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Object-Oriented"
+  short_description: "S3, S4, R6 design and method dispatch"
+  default_prompt: "Use $r-object-oriented to design or review this R class, generic, method, or dispatch behavior."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Performance"
+  short_description: "Optimize R code from measured bottlenecks"
+  default_prompt: "Use $r-performance to improve this measured R bottleneck while preserving correctness and memory constraints."
+
+policy:
+  allow_implicit_invocation: true

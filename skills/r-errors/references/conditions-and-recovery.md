@@ -43,6 +43,15 @@ withCallingHandlers(
 
 Only muffle a warning when the caller has deliberately chosen that policy and the condition is understood. Otherwise let it remain visible.
 
+## Signaling and restarts
+
+Use errors for failed contracts, warnings for recoverable or deprecated behavior,
+and messages for user-facing progress or guidance. If several recovery policies
+are valid, keep the recovery actions near the code that knows how to perform them
+and let a higher-level handler select a named restart with
+`withCallingHandlers()` and `invokeRestart()`. Put the most specific
+`tryCatch()` handler first because handlers are selected in registration order.
+
 ## Cleanup
 
 Use `on.exit()` immediately after acquiring a resource. Keep cleanup independent of whether the protected operation succeeds:
@@ -56,4 +65,4 @@ on.exit(DBI::dbDisconnect(con), add = TRUE)
 
 - [rlang abort](https://rlang.r-lib.org/reference/abort.html)
 - [Conditions in Advanced R](https://adv-r.hadley.nz/conditions.html)
-
+- [Beyond exception handling](https://adv-r.hadley.nz/beyond-exception-handling.html)

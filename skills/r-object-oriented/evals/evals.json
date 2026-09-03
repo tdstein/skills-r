@@ -1,0 +1,55 @@
+{
+  "skill": "r-object-oriented",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "choose-oo-system",
+      "name": "choose-oo-system",
+      "description": "The chosen R OO system matches the object's representation, extension needs, and mutability.",
+      "prompt": "Choose among S3, S4, and R6 for a value-like date wrapper, a formal multi-dispatch type hierarchy, and a mutable resource-owning client.",
+      "traps": [
+        "Chooses R6 for every problem",
+        "Treats stricter machinery as automatically better"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Recommends S3 for a conventional value-like extension when informal contracts are sufficient."
+        },
+        {
+          "id": "1.2",
+          "text": "Recommends S4 when formal slots, inheritance, or multiple dispatch are central."
+        },
+        {
+          "id": "1.3",
+          "text": "Recommends R6 when identity, mutable state, or resource lifecycle is central."
+        }
+      ]
+    },
+    {
+      "id": "dispatch-and-invariants",
+      "name": "dispatch-and-invariants",
+      "description": "The class design separates construction, validation, dispatch, and reference aliasing.",
+      "prompt": "Review an S3 subclass with a custom constructor and an R6 class containing a mutable child object. Identify the invariants and tests required.",
+      "traps": [
+        "Calls class() assignment a complete constructor",
+        "Reconstructs S3 results and erases subclasses",
+        "Shares mutable R6 fields across instances"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Separates low-level construction, user-facing coercion, and validation."
+        },
+        {
+          "id": "2.2",
+          "text": "Checks generic signatures, dispatch paths, inheritance, and class restoration."
+        },
+        {
+          "id": "2.3",
+          "text": "Initializes mutable R6 child state per instance and tests aliasing or cloning."
+        }
+      ]
+    }
+  ]
+}

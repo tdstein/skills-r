@@ -28,6 +28,8 @@ Tests should specify observable behavior and fail for the bug the test is intend
 - Cover normal, empty, missing, malformed, boundary, and duplicate-key inputs when they affect the contract.
 - Assert structure as well as values: class, names, dimensions, row count, column types, grouping, and ordering when meaningful.
 - Prefer `expect_equal()` for exact values, `expect_identical()` for strict type/attribute contracts, and targeted expectations such as `expect_error()`, `expect_warning()`, and `expect_message()`.
+- For errors and warnings, assert the stable condition class first. Capture the condition when its structured fields are part of the API and check those fields directly; match only stable message fragments when message wording is itself a contract.
+- Test condition policy deliberately: whether a warning is visible, muffled, promoted, or recorded is behavior worth testing when callers rely on it. Do not make tests pass by globally suppressing conditions.
 - Test public behavior rather than private implementation details. Refactor production code to expose a stable contract instead of asserting internal environments or helper call counts.
 - Use `withr` to isolate options, environment variables, working directories, graphics devices, and temporary files. Always clean up resources.
 - Avoid real network, clock, randomness, and user-library state in unit tests. Inject boundaries or use deterministic fixtures.
@@ -38,9 +40,12 @@ Tests should specify observable behavior and fail for the bug the test is intend
 - Integration tests may use databases, files, or external services, but must declare prerequisites and be explicitly selected or skipped in CI.
 - Snapshot tests are useful for stable user-facing text, plots, or structured output; do not snapshot volatile timestamps, paths, or unordered data.
 - Use `testthat::skip_if_not_installed()` for optional integrations, and make the skip visible rather than silently changing the behavior under test.
+- If a recovery restart is part of the public contract, test the observable recovered result through the supported handler path. Do not couple ordinary tests to private restart names or call-stack layout.
 
 ## Failure and evaluation
 
 When testing warnings or errors, assert the condition class and stable message fragments, not incidental full backtraces. For data workflows, verify row multiplication, grouping retention, and type stability explicitly.
+- For an unexpected failure, first reduce it to a repeatable example, add a focused regression test that fails before the fix, then add nearby tests for the behavior that must remain unchanged. Keep the diagnosis workflow in `r-debugging`.
+- Resource-owning tests should verify cleanup on both success and failure, using `withr`, `on.exit()`, or a test-specific finalizer rather than relying on session teardown.
 
 Read [references/testthat-patterns.md](references/testthat-patterns.md) for expectation and fixture choices. Read [references/integration-and-fixtures.md](references/integration-and-fixtures.md) for isolation and test tiers. Use `r-errors` when defining the conditions tests should consume.

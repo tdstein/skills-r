@@ -35,6 +35,14 @@ devtools::check()
 
 Run `R CMD check` or the repository's CI equivalent before release. If generated documentation changes unexpectedly, inspect the roxygen source and package metadata rather than patching generated output.
 
+## Reproducible package workspaces
+
+Keep source, generated artifacts, and local build output distinguishable.
+Version-control the metadata and source needed to rebuild the package, and make
+the development and check commands runnable from a clean session. Record
+non-CRAN inputs, generated data provenance, and the R/toolchain assumptions
+when they affect the result.
+
 ## Boundary decisions
 
 - Reusable transformation belongs in `R/`, not in a report chunk.
@@ -46,4 +54,3 @@ Run `R CMD check` or the repository's CI equivalent before release. If generated
 
 - [R Packages](https://r-pkgs.org/)
 - [usethis](https://usethis.r-lib.org/)
-

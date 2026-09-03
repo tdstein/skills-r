@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Documentation"
+  short_description: "R docs, examples, rendering, and publishing"
+  default_prompt: "Use $r-documentation to create or review reproducible R documentation and publishing workflows."
+
+policy:
+  allow_implicit_invocation: true

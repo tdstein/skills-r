@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Environments"
+  short_description: "R bindings, scopes, namespaces, and state"
+  default_prompt: "Use $r-environments to review R environment lookup, bindings, closures, namespaces, or persistent state."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,56 @@
+{
+  "skill": "r-metaprogramming",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "quosure-mask",
+      "name": "quosure-mask",
+      "description": "The wrapper captures caller code with its environment and distinguishes data-mask from environment lookup.",
+      "prompt": "Write a function that accepts a dplyr-style column expression and an external threshold, then evaluates the expression against a data frame without confusing the column with a same-named caller variable.",
+      "traps": [
+        "Uses eval(parse())",
+        "Captures only the expression and loses its caller environment",
+        "Does not distinguish .data from .env"
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Captures caller input as a quosure when later evaluation needs its environment."
+        },
+        {
+          "id": "1.2",
+          "text": "Uses explicit data-mask and caller-environment lookup such as .data and .env."
+        },
+        {
+          "id": "1.3",
+          "text": "Avoids string-based code generation and eval(parse())."
+        }
+      ]
+    },
+    {
+      "id": "safe-call-generation",
+      "name": "safe-call-generation",
+      "description": "The generated AST is structured, allowlisted, and evaluated in a deliberate environment.",
+      "prompt": "Build a small translator from an allowlisted arithmetic expression to another target language. Describe how to handle unknown calls, escaping, and evaluation.",
+      "traps": [
+        "Concatenates strings into executable R",
+        "Evaluates arbitrary user input",
+        "Escapes already-rendered target output twice"
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Builds and inspects structured calls or AST nodes rather than concatenating executable strings."
+        },
+        {
+          "id": "2.2",
+          "text": "Rejects or handles unknown AST nodes through an explicit allowlist policy."
+        },
+        {
+          "id": "2.3",
+          "text": "Defines target escaping and evaluates only in a deliberately constructed environment."
+        }
+      ]
+    }
+  ]
+}

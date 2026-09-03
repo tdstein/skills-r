@@ -1,0 +1,78 @@
+{
+  "skill": "r-debugging",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "repeatable-regression-loop",
+      "name": "repeatable-regression-loop",
+      "description": "The diagnosis makes an R failure minimal and turns the confirmed bug into a regression test.",
+      "prompt": "An R function fails only for one malformed input in a production report. Describe how to diagnose it and what to do after identifying the root cause.",
+      "traps": [
+        "The model proposes a speculative patch without first making the failure repeatable.",
+        "The model stops after the fix without adding a regression test or checking nearby behavior."
+      ],
+      "assertions": [
+        {
+          "id": "1.1",
+          "text": "Creates a minimal reproducible example while preserving useful non-failing contrasts."
+        },
+        {
+          "id": "1.2",
+          "text": "Uses concrete hypotheses and controlled experiments to locate the violated assumption."
+        },
+        {
+          "id": "1.3",
+          "text": "Adds a focused regression test and checks behavior that must remain valid."
+        }
+      ]
+    },
+    {
+      "id": "traceback-tool-choice",
+      "name": "traceback-tool-choice",
+      "description": "The answer selects an appropriate stack and interactive tool for the failure mode.",
+      "prompt": "An rlang error occurs while evaluating a lazy argument several calls below the public function. Which tools should you use first, and how should you interpret them?",
+      "traps": [
+        "The model recommends only traceback() and ignores the call tree.",
+        "The model leaves global error or warning options enabled after debugging."
+      ],
+      "assertions": [
+        {
+          "id": "2.1",
+          "text": "Uses rlang::with_abort() and rlang::last_trace() for the lazy-evaluation call tree."
+        },
+        {
+          "id": "2.2",
+          "text": "Explains how to use traceback() as a base-R alternative and how to read the stack."
+        },
+        {
+          "id": "2.3",
+          "text": "Keeps temporary debugging options and instrumentation scoped to the investigation."
+        }
+      ]
+    },
+    {
+      "id": "batch-only-failure",
+      "name": "batch-only-failure",
+      "description": "The diagnosis accounts for non-interactive state and preserves evidence for later inspection.",
+      "prompt": "An R Markdown job fails on CI but succeeds interactively. Give a focused debugging plan that preserves the batch call frames and checks the likely environment differences.",
+      "traps": [
+        "The model assumes the interactive session is authoritative.",
+        "The model recommends connecting to production or dumping sensitive inputs into logs."
+      ],
+      "assertions": [
+        {
+          "id": "3.1",
+          "text": "Reproduces through an explicit render or fresh process rather than relying on IDE knitting state."
+        },
+        {
+          "id": "3.2",
+          "text": "Uses dump.frames() or a focused trace for non-interactive evidence."
+        },
+        {
+          "id": "3.3",
+          "text": "Compares global objects, attached packages, working directory, PATH, R_LIBS, inputs, locale, and versions without leaking secrets."
+        }
+      ]
+    }
+  ]
+}

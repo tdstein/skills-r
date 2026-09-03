@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Debugging"
+  short_description: "Systematic diagnosis of unexpected R failures"
+  default_prompt: "Use $r-debugging to reproduce, locate, and diagnose this R failure, then identify the regression test it needs."
+
+policy:
+  allow_implicit_invocation: true

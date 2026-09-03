@@ -6,8 +6,9 @@ focused R guidance without loading an entire language manual into every task.
 
 This repository is an R counterpart to
 [`samber/cc-skills-golang`](https://github.com/samber/cc-skills-golang). The
-initial collection contains 12 implemented skills. Evaluation results remain
-pending until the independent evaluation lifecycle is completed.
+collection contains 23 implemented skills, including focused coverage derived
+from Hadley Wickham's *Advanced R*. Evaluation results remain pending until
+the independent evaluation lifecycle is completed.
 
 ## How to use
 
@@ -127,9 +128,9 @@ when installing manually.
 
 ## Skill catalog
 
-The initial skills are atomic, cross-referencing units. Each skill should own
-one coherent concern, state when it should trigger, and identify neighboring
-skills that should handle adjacent concerns.
+The skills are atomic, cross-referencing units. Each skill should own one
+coherent concern, state when it should trigger, and identify neighboring skills
+that should handle adjacent concerns.
 
 Status legend:
 
@@ -138,7 +139,7 @@ Status legend:
 - **Evaluated** — the skill has a recorded evaluation result in
   [`EVALUATIONS.md`](EVALUATIONS.md).
 
-All initial skills are Implemented. Evaluation status is tracked separately in
+All catalogued skills are Implemented. Evaluation status is tracked separately in
 [`EVALUATIONS.md`](EVALUATIONS.md).
 
 ### R foundations
@@ -163,9 +164,26 @@ All initial skills are Implemented. Evaluation status is tracked separately in
 | [`r-purrr`](skills/r-purrr/) | Implemented | Type-stable iteration, mapping, list-columns, ad hoc functions, and iteration errors | `map_*()`, repeated function application, list-columns, or replacing an explicit loop |
 | [`r-readr`](skills/r-readr/) | Implemented | Delimited-file import, parsing, locales, missing values, column specifications, and diagnostics | Reading CSV/TSV or fixed-width text, parsing dates/numbers, or investigating import problems |
 
+### Advanced R programming
+
+| Skill | Status | Responsibility | Trigger examples |
+| --- | --- | --- | --- |
+| [`r-functions`](skills/r-functions/) | Implemented | Function contracts, calls, lexical scope, lazy evaluation, control flow, recursion, and composition | Designing an R function, debugging argument evaluation, or reviewing a loop |
+| [`r-environments`](skills/r-environments/) | Implemented | Bindings, parent chains, namespaces, closures, caller context, and persistent state | Investigating lookup, closures, `<<-`, package namespaces, or caches |
+| [`r-functional-programming`](skills/r-functional-programming/) | Implemented | Pure functions, higher-order design, factories, operators, memoisation, and effect boundaries | Building a function factory, operator, cache, or composable workflow |
+| [`r-object-oriented`](skills/r-object-oriented/) | Implemented | S3, S4, and R6 representation, construction, validation, dispatch, inheritance, and system choice | Designing an R class, generic, method, or mutable object |
+| [`r-metaprogramming`](skills/r-metaprogramming/) | Implemented | Expressions, calls, quotation, quasiquotation, quosures, data masks, evaluation, and translation | Capturing user code, generating calls, or building a small DSL |
+| [`r-debugging`](skills/r-debugging/) | Implemented | Reproducible diagnosis, tracebacks, interactive debugging, batch failures, and crash investigation | Debugging an R error, warning, hang, or R Markdown failure |
+| [`r-benchmarking`](skills/r-benchmarking/) | Implemented | Profiling, microbenchmarks, workload design, allocations, garbage collection, and scaling | Measuring an R bottleneck or comparing implementations |
+| [`r-performance`](skills/r-performance/) | Implemented | Evidence-based optimization, vectorization, allocation control, and performance trade-offs | Improving a measured R hot path without changing behavior |
+| [`r-interop`](skills/r-interop/) | Implemented | R/C/C++ boundaries, `.Call`, Rcpp, registration, protection, conversion, and portability | Adding or reviewing native R code |
+| [`r-connections`](skills/r-connections/) | Implemented | File, URL, pipe, socket, text, binary, and encoding-aware connection I/O | Reading or writing through an R connection |
+| [`r-documentation`](skills/r-documentation/) | Implemented | Package docs, vignettes, reports, books, reproducible examples, and publishing workflows | Writing or building R documentation and long-form project docs |
+
 ## Taxonomy
 
-The initial taxonomy is intentionally small and covers an end-to-end workflow:
+The taxonomy is organized around R language semantics, project boundaries, and
+the Tidyverse workflow:
 
 ```text
 R foundations
@@ -174,7 +192,12 @@ R foundations
 ├── r-project-layout
 ├── r-dependencies
 ├── r-testing
-└── r-errors
+├── r-errors
+├── r-functions
+├── r-environments
+├── r-object-oriented
+├── r-metaprogramming
+└── r-debugging
 
 Tidyverse workflow
 ├── r-tidyverse-core
@@ -183,6 +206,14 @@ Tidyverse workflow
 ├── r-dplyr       transform
 ├── r-purrr       iterate
 └── r-ggplot2     visualize
+
+Advanced R tooling
+├── r-functional-programming
+├── r-benchmarking
+├── r-performance
+├── r-interop
+├── r-connections
+└── r-documentation
 ```
 
 The intended flow is:
@@ -211,12 +242,23 @@ Use the narrowest skill that owns the requested behavior, and add
 | Dependency versions, lockfiles, or environment restoration | [`r-dependencies`](skills/r-dependencies/) | `r-project-layout` unless structure is the main issue |
 | Correctness tests, snapshots, fixtures, or mocks | [`r-testing`](skills/r-testing/) | `r-errors`, which owns failure design rather than test strategy |
 | Conditions, diagnostics, or backtraces | [`r-errors`](skills/r-errors/) | `r-testing`, unless the request is specifically about testing failures |
+| Reproducing and locating an unexpected failure | [`r-debugging`](skills/r-debugging/) | `r-errors`, which owns condition design rather than diagnosis |
 | Tidy data shape, tibbles, pipes, or shared tidy evaluation | [`r-tidyverse-core`](skills/r-tidyverse-core/) | Any one package skill when the concern spans several packages |
 | Filtering, selecting, mutating, grouping, summarizing, or joining tables | [`r-dplyr`](skills/r-dplyr/) | `r-tidyr`, which changes shape rather than table relationships |
 | Long/wide reshaping, nesting, unnesting, or list-column shape | [`r-tidyr`](skills/r-tidyr/) | `r-dplyr`, which can place but does not own reshaping |
 | Plot layers, mappings, scales, facets, themes, or coordinates | [`r-ggplot2`](skills/r-ggplot2/) | `r-dplyr` for complex aggregation that belongs before plotting |
 | Mapping functions over vectors or lists and type-stable iteration | [`r-purrr`](skills/r-purrr/) | `r-dplyr` unless the core operation is table transformation |
 | Parsing delimited or fixed-width text | [`r-readr`](skills/r-readr/) | `r-dplyr`, which operates after parsing |
+| Function contracts, lazy arguments, control flow, or recursion | [`r-functions`](skills/r-functions/) | `r-purrr` unless iteration is the core operation |
+| Environment identity, lexical lookup, namespaces, or persistent state | [`r-environments`](skills/r-environments/) | `r-functions` when the environment mechanics are the issue |
+| Function factories, operators, purity, or memoisation | [`r-functional-programming`](skills/r-functional-programming/) | `r-functions` for ordinary function semantics |
+| S3, S4, R6, constructors, or method dispatch | [`r-object-oriented`](skills/r-object-oriented/) | `r-core`, which supplies representation semantics but not OO design |
+| Expressions, quosures, data masks, code generation, or translation | [`r-metaprogramming`](skills/r-metaprogramming/) | `r-functions` unless no code capture/evaluation is involved |
+| Profiling or benchmarking an R workload | [`r-benchmarking`](skills/r-benchmarking/) | `r-performance`, which changes code after evidence exists |
+| Optimizing a measured R bottleneck | [`r-performance`](skills/r-performance/) | `r-benchmarking`, which owns measurement design |
+| R/C/C++ or Rcpp integration | [`r-interop`](skills/r-interop/) | `r-performance` unless the native boundary is justified by measurement |
+| Connection-based file, URL, pipe, socket, text, or binary I/O | [`r-connections`](skills/r-connections/) | `r-readr`, which owns tabular parsing |
+| R package docs, vignettes, reports, books, or publishing | [`r-documentation`](skills/r-documentation/) | `r-project-layout`, unless directory structure is the main issue |
 
 Examples of deliberate boundaries:
 
@@ -230,21 +272,25 @@ Examples of deliberate boundaries:
 - `r-errors` defines failure behavior; `r-testing` verifies that behavior.
 - `r-dependencies` manages reproducibility of packages and environments;
   `r-project-layout` manages repository and project structure.
+- `r-benchmarking` measures; `r-performance` optimizes after evidence.
+- `r-connections` transports bytes or characters; `r-readr` parses tabular data.
+- `r-documentation` owns documentation content and publishing; project layout
+  owns where those artifacts live.
 
 ## Roadmap
 
-### Initial release
+### Current collection
 
-1. Maintain the six R foundation skills.
-2. Maintain the six Tidyverse workflow skills.
-3. Keep focused references for joins and grouping, pivoting, type-stable
-   mapping, ggplot2 mappings, parsing diagnostics, and R conditions current.
-4. Expand adversarial evaluation coverage for the highest-risk boundaries.
-5. Record results only after independent evaluation runs are complete.
+1. Maintain the R foundation, Advanced R, and Tidyverse skill families.
+2. Keep focused references for joins and grouping, pivoting, type-stable
+   mapping, ggplot2 mappings, parsing diagnostics, conditions, performance,
+   native interop, and reproducible documentation current.
+3. Expand adversarial evaluation coverage for the highest-risk boundaries.
+4. Record results only after independent evaluation runs are complete.
 
 ### Follow-up skill families
 
-The following are intentionally outside the first 12-skill release:
+The following remain outside the current collection:
 
 - `r-stringr` for vectorized string processing and regular expressions.
 - `r-forcats` for factor levels and categorical ordering.
@@ -253,9 +299,7 @@ The following are intentionally outside the first 12-skill release:
 - `r-database` for DBI connections, transactions, drivers, and SQL boundaries.
 - `r-tidymodels` for modeling, preprocessing, resampling, tuning, and metrics.
 - `r-shiny` for reactive applications and server/UI behavior.
-- `r-documentation` for roxygen2, pkgdown, Quarto, and R Markdown publishing.
 - `r-lint` for `lintr`, `R CMD check`, and automated enforcement.
-- `r-performance` and `r-benchmarking` for measurement and optimization.
 
 These additions should remain separate rather than expanding `r-tidyverse-core`
 into a general R manual.

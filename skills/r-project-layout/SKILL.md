@@ -29,6 +29,21 @@ Choose the layout from the deliverable first. A distributable package, an analys
 - **Report/document:** use when the primary artifact is a rendered Quarto or R Markdown document; keep reusable data preparation and modeling code in scripts or a package rather than hiding everything in chunks.
 - **Mixed project:** use a package for reusable logic plus a separate `analysis/`, `reports/`, or `inst/` area for project-specific execution. Keep the dependency and ownership boundaries explicit.
 
+## Make the project the source of truth
+
+Design the tree so a clean session can rebuild derived data, figures, tests, and
+documents from version-controlled source. Distinguish source files from
+generated artifacts, record the inputs and commands that produce derived
+outputs, and keep transient build output out of the source tree unless the
+project deliberately publishes it.
+
+Use version control for code, project metadata, documentation source, and
+reproducibility configuration. Prefer explicit project-root paths, stable
+machine-readable names, and deterministic seeds or parameters over hidden
+session state. When the project has meaningful performance or debugging work,
+give benchmarks, profiles, and diagnostic fixtures an intentional home and
+keep them separate from production outputs.
+
 ## Package baseline
 
 Start a package with `DESCRIPTION`, `NAMESPACE` (usually generated), `R/`, `tests/testthat.R`, `tests/testthat/`, and documentation source. Add `man/` and `vignettes/` when generated documentation or long-form examples are part of the deliverable. Keep generated files generated; do not hand-edit `NAMESPACE` or `.Rd` files when roxygen2 owns them.
@@ -56,4 +71,7 @@ Name files so they are machine readable, describe their contents, and sort in ex
 
 - Read [references/package-layout.md](references/package-layout.md) for package files and generated artifacts.
 - Read [references/analysis-layout.md](references/analysis-layout.md) for scripts, reports, data, and reproducibility boundaries.
-- Use `r-dependencies` for `DESCRIPTION`, `renv.lock`, and dependency resolution; use `r-testing` for test placement and test tiers.
+- Use `r-dependencies` for `DESCRIPTION`, `renv.lock`, repositories, and dependency resolution.
+- Use `r-documentation` for documentation content, examples, rendering, publishing, and contribution workflows.
+- Use `r-connections` for connection lifecycle and external I/O mechanics.
+- Use `r-testing` for test placement and test tiers.

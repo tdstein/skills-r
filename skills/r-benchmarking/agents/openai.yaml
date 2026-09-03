@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Benchmarking"
+  short_description: "Profile and benchmark R performance"
+  default_prompt: "Use $r-benchmarking to measure this R workload and interpret its CPU, memory, and scaling behavior."
+
+policy:
+  allow_implicit_invocation: true

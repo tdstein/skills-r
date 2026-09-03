@@ -4,10 +4,11 @@ Review in this order:
 
 1. **Behavioral clarity** — Can a reader identify inputs, output shape, side effects, and failure behavior?
 2. **Names** — Do names describe domain concepts and distinguish raw, cleaned, grouped, and final data?
-3. **Control flow** — Is branching easier to understand as ordinary `if`/`else` or a named helper than as nested pipes?
-4. **Data flow** — Does each pipeline step have one purpose? Are joins and grouping assumptions visible?
-5. **Dependencies** — Are packages loaded at the right boundary and referenced through `pkg::fun()` where appropriate?
-6. **Mechanical consistency** — Does styler agree with line breaks, indentation, and spacing?
+3. **Shape and selection** — Do `[`/`[[` choices, dimensions, row identifiers, and replacement sizes make the intended contract visible?
+4. **Control flow** — Is branching easier to understand as ordinary `if`/`else` or a named helper than as nested pipes?
+5. **Data flow** — Does each pipeline step have one purpose? Are joins and grouping assumptions visible?
+6. **Dependencies** — Are packages loaded at the right boundary and referenced through `pkg::fun()` where appropriate?
+7. **Mechanical consistency** — Does styler agree with line breaks, indentation, and spacing?
 
 Prefer a small refactor over a style comment when code is hard to understand. Keep a style comment when it records a project convention or prevents a recurring correctness problem.
 
@@ -17,6 +18,7 @@ Prefer a small refactor over a style comment when code is hard to understand. Ke
 - A function that calls `setwd()`, changes options globally, or attaches packages.
 - A pipeline that mixes data transformation, file writes, plotting, and global assignment.
 - A script that works only because a previous session created an object, set an option, or changed the working directory.
+- Code that depends on partial matching, accidental recycling, or dimension dropping to select or replace data.
 - A comment that describes what a verb already says but omits the join key or statistical reason.
 - A broad `suppressWarnings()` or `suppressMessages()` around a whole workflow.
 - Repeated string literals, column names, or magic cutoffs that should be named constants.

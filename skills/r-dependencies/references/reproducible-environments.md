@@ -24,6 +24,11 @@ Use `pak` or the established project tool to resolve dependencies. For non-CRAN 
 - Bioconductor: Bioconductor release matching the R version.
 - Local package: a documented path or release artifact, not an untracked developer directory.
 
+Record enough context to explain a build: R version, repositories, package
+versions, and any system libraries or compilers that matter. A rendered report
+or book should expose or archive its session information when reproducibility
+is an important deliverable.
+
 ## CI
 
 CI should restore or install dependencies before tests and check. Pin the R version when reproducibility matters, and make the package repository configuration explicit. Avoid making CI silently update the lockfile.
@@ -32,4 +37,3 @@ CI should restore or install dependencies before tests and check. Pin the R vers
 
 - [renv](https://rstudio.github.io/renv/)
 - [pak](https://pak.r-lib.org/)
-

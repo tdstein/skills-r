@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Functions"
+  short_description: "R function contracts, calls, and control flow"
+  default_prompt: "Use $r-functions to design or review this R function's contract, evaluation, control flow, or composition."
+
+policy:
+  allow_implicit_invocation: true

@@ -27,16 +27,20 @@ Use this skill for the shared grammar and data model behind tidyverse code. Keep
 - Treat tidy data as one observation per row, one variable per column, and one observational unit per table. If the task changes table shape, route to `r-tidyr`.
 - Choose the representation that makes the current analysis natural. Tidy data is usually the useful working form, but a wide or nested form can be appropriate at an interface; make any untidy → transform → tidy transition explicit.
 - Prefer tibbles for rectangular data. Preserve useful names and avoid converting to a bare matrix or silently dropping dimensions.
+- Treat a data frame as a named list with a rectangular row contract, not as a matrix with interchangeable rows and columns. List-columns and matrix-columns are valid deliberate structures, but they need explicit downstream handling because many functions assume ordinary atomic columns.
+- Keep row identifiers as ordinary columns when possible. Row names are a constrained metadata channel: they must be unique, support only one character key, and do not survive duplication as useful identifiers.
+- Remember the useful tibble guarantees: construction does not silently coerce inputs, recycling is limited to length-one inputs, non-syntactic names are retained, and `[` preserves the tibble container. Use `[[` when a single column vector is intended.
 - Use the native pipe `|>` for ordinary function composition. Use `%>%` only when existing code or a package-specific feature requires it.
 - Keep transformations in the package that owns them: `r-dplyr` for rows, columns, values, and joins; `r-tidyr` for shape; `r-ggplot2` for plots; `r-purrr` for mapping; `r-readr` for file parsing.
 - Inspect types with `str()`, `dplyr::glimpse()`, `vctrs::vec_ptype()`, or targeted assertions before relying on implicit coercion.
 - Make missing-value behavior explicit. `NA` is not the same as `NULL`, an empty character value, or a missing column.
+- Make subsetting intent explicit: `[` selects a collection, `[[` extracts one element, and character lookup should be exact. Avoid relying on partial matching, implicit recycling, or dimension dropping in reusable code.
 - Distinguish missing values observed in the source from structural missing values introduced by a reshape. Drop or fill only when that distinction is part of the data contract.
 - Preserve grouping intentionally. After a grouped operation, inspect `dplyr::group_vars()` and use `.groups` or `ungroup()` when downstream code must not inherit grouping.
 - Use tidy evaluation only where it improves a reusable interface. In package functions, distinguish data-masked arguments from ordinary strings and use `.data`/`.env` pronouns when ambiguity is possible.
 
 ## Routing
 
-- Read [references/types-and-shapes.md](references/types-and-shapes.md) when a task involves coercion, recycling, list-columns, grouping, or deciding which sibling package owns a transformation.
+- Read [references/types-and-shapes.md](references/types-and-shapes.md) when a task involves coercion, recycling, list-columns, matrix-columns, row identifiers, subsetting, grouping, or deciding which sibling package owns a transformation.
 - Read [references/tidy-evaluation.md](references/tidy-evaluation.md) when writing reusable functions with data-masked arguments, tidy selection, or dynamic column names.
 - Do not turn this skill into a general R style guide, statistical modeling guide, database guide, or visualization guide.

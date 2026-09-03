@@ -1,0 +1,7 @@
+interface:
+  display_name: "R Interoperability"
+  short_description: "R and C or C++ integration boundaries"
+  default_prompt: "Use $r-interop to design or review this R/C/C++ boundary, native registration, or memory-safety concern."
+
+policy:
+  allow_implicit_invocation: true
