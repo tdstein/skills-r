@@ -35,7 +35,7 @@ description: "What the skill covers and when to apply it."
 license: MIT
 compatibility: "R 4.1+ and current releases of the documented packages; compatible with Claude Code, Cursor, Gemini CLI, Codex, and similar agents."
 metadata:
-  author: samber
+  author: tdstein
   version: "0.1.0"
 user-invocable: true
 allowed-tools: Read Edit Write Glob Grep Bash(R:*) Bash(Rscript:*) Bash(git:*) Agent

@@ -6,11 +6,11 @@ compatibility: "R 4.1+ and the documented packages; compatible with Claude Code,
 user-invocable: true
 allowed-tools: "Read Grep Glob Bash(R:*) Bash(Rscript:*)"
 metadata:
-  author: "samber"
+  author: "tdstein"
   version: "0.1.0"
   openclaw:
     emoji: "🧹"
-    homepage: "https://github.com/samber/cc-skills-r"
+    homepage: "https://github.com/tdstein/cc-skills-r"
     requires:
       bins:
         - R

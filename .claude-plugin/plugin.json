@@ -3,11 +3,10 @@
   "description": "AI Agent Skills for R and Tidyverse development",
   "version": "0.1.0",
   "author": {
-    "name": "Samuel Berthe",
-    "email": "hey@samuel-berthe.fr"
+    "name": "tdstein"
   },
-  "homepage": "https://github.com/samber/cc-skills-r",
-  "repository": "https://github.com/samber/cc-skills-r",
+  "homepage": "https://github.com/tdstein/cc-skills-r",
+  "repository": "https://github.com/tdstein/cc-skills-r",
   "license": "MIT",
   "keywords": [
     "claude-code",

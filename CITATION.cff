@@ -5,7 +5,6 @@ type: software
 version: "0.1.0"
 date-released: 2026-09-03
 authors:
-  - family-names: Berthe
-    given-names: Samuel
-repository-code: "https://github.com/samber/cc-skills-r"
+  - name: tdstein
+repository-code: "https://github.com/tdstein/cc-skills-r"
 license: MIT
