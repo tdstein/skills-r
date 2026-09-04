@@ -10,7 +10,7 @@ metadata:
   version: "0.1.0"
   openclaw:
     emoji: "🧭"
-    homepage: "https://github.com/tdstein/cc-skills-r"
+    homepage: "https://github.com/tdstein/skills-r"
     requires:
       bins:
         - R

@@ -1,13 +1,13 @@
 {
-  "name": "cc-skills-r",
+  "name": "skills-r",
   "displayName": "Skills for R",
   "description": "AI Agent Skills for R and Tidyverse development",
   "version": "0.1.0",
   "author": {
     "name": "tdstein"
   },
-  "homepage": "https://github.com/tdstein/cc-skills-r",
-  "repository": "https://github.com/tdstein/cc-skills-r",
+  "homepage": "https://github.com/tdstein/skills-r",
+  "repository": "https://github.com/tdstein/skills-r",
   "license": "MIT",
   "keywords": [
     "plugin",

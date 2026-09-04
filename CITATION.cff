@@ -1,10 +1,10 @@
 cff-version: 1.2.0
-message: "If you use cc-skills-r, please cite it as below."
-title: "cc-skills-r"
+message: "If you use skills-r, please cite it as below."
+title: "skills-r"
 type: software
 version: "0.1.0"
 date-released: 2026-09-03
 authors:
   - name: tdstein
-repository-code: "https://github.com/tdstein/cc-skills-r"
+repository-code: "https://github.com/tdstein/skills-r"
 license: MIT

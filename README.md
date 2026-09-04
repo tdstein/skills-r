@@ -18,9 +18,9 @@ The universal [`skills`](https://skills.sh/) CLI is the recommended
 installation method for any Agent Skills-compatible client:
 
 ```bash
-npx skills add https://github.com/tdstein/cc-skills-r --all
+npx skills add https://github.com/tdstein/skills-r --all
 # or install one skill:
-npx skills add https://github.com/tdstein/cc-skills-r --skill r-dplyr
+npx skills add https://github.com/tdstein/skills-r --skill r-dplyr
 ```
 
 Install the complete collection when work crosses import, transformation,
@@ -34,7 +34,7 @@ marketplace's install command. Otherwise, clone it into a Claude-discoverable
 skills directory:
 
 ```bash
-git clone https://github.com/tdstein/cc-skills-r.git ~/.claude/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.claude/skills/skills-r
 ```
 
 ### OpenClaw
@@ -42,9 +42,9 @@ git clone https://github.com/tdstein/cc-skills-r.git ~/.claude/skills/cc-skills-
 Clone the repository into either supported discovery directory:
 
 ```bash
-git clone https://github.com/tdstein/cc-skills-r.git ~/.openclaw/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.openclaw/skills/skills-r
 # or, for a workspace installation:
-git clone https://github.com/tdstein/cc-skills-r.git ~/.openclaw/workspace/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.openclaw/workspace/skills/skills-r
 ```
 
 ### Gemini CLI
@@ -52,13 +52,13 @@ git clone https://github.com/tdstein/cc-skills-r.git ~/.openclaw/workspace/skill
 Install the extension directly:
 
 ```bash
-gemini extensions install https://github.com/tdstein/cc-skills-r
+gemini extensions install https://github.com/tdstein/skills-r
 ```
 
 Update an existing installation with:
 
 ```bash
-gemini extensions update cc-skills-r
+gemini extensions update skills-r
 ```
 
 ### Cursor
@@ -66,7 +66,7 @@ gemini extensions update cc-skills-r
 Clone into Cursor's cross-client discovery directory:
 
 ```bash
-git clone https://github.com/tdstein/cc-skills-r.git ~/.cursor/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.cursor/skills/skills-r
 ```
 
 Cursor also discovers project-local skills from `.agents/skills/` and
@@ -77,13 +77,13 @@ Cursor also discovers project-local skills from `.agents/skills/` and
 Use the plugin command when supported by the Copilot client:
 
 ```text
-/plugin install https://github.com/tdstein/cc-skills-r
+/plugin install https://github.com/tdstein/skills-r
 ```
 
 Or clone into Copilot's discovery directory:
 
 ```bash
-git clone https://github.com/tdstein/cc-skills-r.git ~/.copilot/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.copilot/skills/skills-r
 ```
 
 Copilot discovers skills from `.copilot/skills/`.
@@ -93,7 +93,7 @@ Copilot discovers skills from `.copilot/skills/`.
 Clone into a supported shared discovery directory:
 
 ```bash
-git clone https://github.com/tdstein/cc-skills-r.git ~/.agents/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.agents/skills/skills-r
 ```
 
 OpenCode discovers skills from `.agents/skills/`, `.opencode/skills/`, and
@@ -104,14 +104,14 @@ OpenCode discovers skills from `.agents/skills/`, `.opencode/skills/`, and
 Clone into the shared Agent Skills directory:
 
 ```bash
-git clone https://github.com/tdstein/cc-skills-r.git ~/.agents/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.agents/skills/skills-r
 ```
 
 Codex discovers skills from `~/.agents/skills/` and project-local
 `.agents/skills/`. Update a clone with:
 
 ```bash
-cd ~/.agents/skills/cc-skills-r && git pull
+cd ~/.agents/skills/skills-r && git pull
 ```
 
 ### Antigravity
@@ -119,7 +119,7 @@ cd ~/.agents/skills/cc-skills-r && git pull
 Clone into Antigravity's discovery directory:
 
 ```bash
-git clone https://github.com/tdstein/cc-skills-r.git ~/.antigravity/skills/cc-skills-r
+git clone https://github.com/tdstein/skills-r.git ~/.antigravity/skills/skills-r
 ```
 
 The exact discovery behavior can vary by client version. Prefer the universal

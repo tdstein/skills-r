@@ -2,7 +2,7 @@
 
 ## Project overview
 
-`cc-skills-r` is a cross-client Agent Skills plugin for R development, with
+`skills-r` is a cross-client Agent Skills plugin for R development, with
 Tidyverse guidance as its initial focus. Skills are Markdown instructions that
 can be used by Claude Code, Cursor, Gemini CLI, Codex, and similar agents.
 
