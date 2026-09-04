@@ -18,4 +18,3 @@ Functions should accept dependencies as arguments when practical, return values 
 
 - [R Packages: Code](https://r-pkgs.org/code.html)
 - [R Packages: Package metadata](https://r-pkgs.org/description.html)
-

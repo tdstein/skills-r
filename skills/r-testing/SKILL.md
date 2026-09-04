@@ -45,6 +45,7 @@ Tests should specify observable behavior and fail for the bug the test is intend
 ## Failure and evaluation
 
 When testing warnings or errors, assert the condition class and stable message fragments, not incidental full backtraces. For data workflows, verify row multiplication, grouping retention, and type stability explicitly.
+
 - For an unexpected failure, first reduce it to a repeatable example, add a focused regression test that fails before the fix, then add nearby tests for the behavior that must remain unchanged. Keep the diagnosis workflow in `r-debugging`.
 - Resource-owning tests should verify cleanup on both success and failure, using `withr`, `on.exit()`, or a test-specific finalizer rather than relying on session teardown.
 

@@ -29,4 +29,3 @@ Use `cli::cli_abort()` or `cli::cli_warn()` when a CLI or application needs form
 
 - [rlang condition handling](https://rlang.r-lib.org/reference/topic-condition.html)
 - [cli conditions](https://cli.r-lib.org/reference/cli_abort.html)
-

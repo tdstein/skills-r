@@ -38,4 +38,3 @@ Use snapshots for deliberately stable output such as CLI messages, printed objec
 
 - [testthat reference](https://testthat.r-lib.org/reference/)
 - [Testing functions](https://r-pkgs.org/testing-basics.html)
-

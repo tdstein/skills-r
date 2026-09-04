@@ -36,4 +36,3 @@ Test bare-name, character-name, and missing-column inputs separately. Include a 
 
 - [rlang tidy evaluation](https://rlang.r-lib.org/reference/topic-data-mask.html)
 - [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html)
-
