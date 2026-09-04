@@ -7,8 +7,9 @@ focused R guidance without loading an entire language manual into every task.
 This repository is an R counterpart to
 [`samber/cc-skills-golang`](https://github.com/samber/cc-skills-golang). The
 collection contains 23 implemented skills, including focused coverage derived
-from Hadley Wickham's *Advanced R*. Evaluation results remain pending until
-the independent evaluation lifecycle is completed.
+from Hadley Wickham's *Advanced R*. Evaluation results are recorded in
+[`EVALUATIONS.md`](EVALUATIONS.md) as the independent lifecycle is completed for
+each skill.
 
 ## How to use
 
@@ -139,14 +140,14 @@ Status legend:
 - **Evaluated** — the skill has a recorded evaluation result in
   [`EVALUATIONS.md`](EVALUATIONS.md).
 
-All catalogued skills are Implemented. Evaluation status is tracked separately in
-[`EVALUATIONS.md`](EVALUATIONS.md).
+All catalogued skills are implemented. Skills with completed evaluations are
+marked Evaluated, with details tracked in [`EVALUATIONS.md`](EVALUATIONS.md).
 
 ### R foundations
 
 | Skill | Status | Responsibility | Trigger examples |
 | --- | --- | --- | --- |
-| [`r-core`](skills/r-core/) | Implemented | R vectors, data frames, tibbles, recycling, missing values, pipes, and shared language semantics | Choosing an R object type, understanding vector behavior, or deciding how a tidy workflow should represent data |
+| [`r-core`](skills/r-core/) | Evaluated | R vectors, data frames, tibbles, recycling, missing values, pipes, and shared language semantics | Choosing an R object type, understanding vector behavior, or deciding how a tidy workflow should represent data |
 | [`r-style`](skills/r-style/) | Implemented | Readable R naming, formatting, project conventions, and Tidyverse style | Reviewing style, naming objects, formatting code, or choosing between equivalent idioms |
 | [`r-project-layout`](skills/r-project-layout/) | Implemented | R package, analysis-project, Quarto/R Markdown, and reproducible project structure | Starting or reorganizing an R project, package, report, or analysis repository |
 | [`r-dependencies`](skills/r-dependencies/) | Implemented | `DESCRIPTION`, `renv`, lockfiles, dependency selection, and reproducible package environments | Adding packages, pinning versions, restoring an environment, or auditing dependencies |

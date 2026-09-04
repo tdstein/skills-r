@@ -1,15 +1,16 @@
 # Evaluation plan
 
-This document defines how the implemented R skills will be evaluated. No
-evaluations have been run yet, so all results in this document are marked
-**pending**. Empty result fields are intentional and must not be interpreted as
-zero error rate, no improvement, or a completed baseline.
+This document defines how the implemented R skills will be evaluated. Results
+are recorded per skill as the independent evaluation lifecycle is completed.
+Skills without a recorded result remain **pending**. Empty result fields are
+intentional and must not be interpreted as zero error rate, no improvement, or
+a completed baseline.
 
 ## Status
 
 | Skill | Evaluation focus | Status | Results |
 | --- | --- | --- | --- |
-| [`r-core`](skills/r-core/) | Vector types, recycling, tibbles, missing values, and object-shape reasoning | Pending | — |
+| [`r-core`](skills/r-core/) | Vector types, recycling, tibbles, missing values, and object-shape reasoning | Evaluated | With: 100%; without: 100%; Δ 0 pp |
 | [`r-style`](skills/r-style/) | Naming, formatting, readable pipelines, and style-boundary decisions | Pending | — |
 | [`r-project-layout`](skills/r-project-layout/) | Package versus analysis-project structure and reproducible repository organization | Pending | — |
 | [`r-dependencies`](skills/r-dependencies/) | `DESCRIPTION`, `renv`, lockfiles, version constraints, and environment restoration | Pending | — |
@@ -32,6 +33,43 @@ zero error rate, no improvement, or a completed baseline.
 | [`r-interop`](skills/r-interop/) | `.Call`, Rcpp, protection, conversion, registration, and portability | Pending | — |
 | [`r-connections`](skills/r-connections/) | Connection lifecycle, text/binary I/O, transport, and encodings | Pending | — |
 | [`r-documentation`](skills/r-documentation/) | Reproducible examples, generated docs, vignettes, books, and publishing | Pending | — |
+
+## Results
+
+### `r-core`
+
+- Date: 2026-09-04
+- Repository revision: `d8371b250e2f9a3f53a0316b8bde09df57d4dae6` (expanded
+  fixture changes were uncommitted)
+- Model and configuration: Codex CLI 0.153.2 using
+  `openai.gpt-5.6-luna` through Amazon Bedrock, maximum reasoning effort,
+  ephemeral sessions, separate temporary workspaces, read-only sandbox, and no
+  network tools.
+- Cases and runs: 8 cases, 1 run per condition and case, 16 runs total.
+- Assertions: 28 per condition, 56 assertion checks total.
+- With skill: 28/28 assertions passed (100%).
+- Without skill: 28/28 assertions passed (100%).
+- Difference: 0 percentage points absolute; 0% relative.
+- Review: All responses were checked against the fixture assertions. No
+  assertion failures, false positives, or generated artifacts were observed.
+- Follow-up: The expanded fixture adds substantially harder type, shape,
+  subassignment, aliasing, and list-column prompts, but it still does not
+  separate the baseline from the skilled condition. Add executable behavioral
+  assertions or cases requiring artifacts beyond standard R explanations.
+
+The original 3-case fixture also scored 10/10 in both conditions; that result
+is superseded by this expanded-fixture run.
+
+| Case | Assertions | With skill | Without skill |
+| --- | ---: | ---: | ---: |
+| `missing-value-and-size-contract` | 4 | Pass | Pass |
+| `subsetting-preserves-intent` | 3 | Pass | Pass |
+| `data-mask-boundary` | 3 | Pass | Pass |
+| `matrix-subsetting-preserves-dimensions` | 3 | Pass | Pass |
+| `typed-missingness-and-attributes` | 4 | Pass | Pass |
+| `strict-subassignment-contract` | 4 | Pass | Pass |
+| `copy-on-modify-versus-reference` | 3 | Pass | Pass |
+| `list-column-container-boundary` | 4 | Pass | Pass |
 
 ## Goals
 
